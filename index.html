@@ -12,26 +12,42 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://permits.vaughnai.com" />
     
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        primary: {
-                            50: '#f0f9ff',
-                            500: '#3b82f6',
-                            600: '#2563eb',
-                            900: '#1e3a8a'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
+        /* Reset and Base Styles - Match Lead Crushr Dashboard */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-green: #2e7d32;
+            --secondary-green: #43a047;
+            --accent-orange: #ff9800;
+            --accent-blue: #1976d2;
+            --surface-white: #ffffff;
+            --surface-gray: #f8fafc;
+            --border-light: #e2e8f0;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
+            --success-green: #4caf50;
+            --warning-orange: #ff9800;
+            --error-red: #f44336;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--surface-gray);
+            color: var(--text-primary);
+            line-height: 1.5;
+            font-weight: 400;
+        }
+
         .animate-fade-up {
             animation: fadeUp 0.6s ease-out forwards;
         }
@@ -46,53 +62,686 @@
                 transform: translateY(0);
             }
         }
-        
-        .gradient-bg {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+        /* Header Styles - Match Dashboard */
+        .header {
+            background: var(--surface-white);
+            border-bottom: 1px solid var(--border-light);
+            padding: 16px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .logo-container {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-green);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .logo-text {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .badge {
+            background: #e0f2fe;
+            color: var(--accent-blue);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-link:hover {
+            background: var(--surface-gray);
+            color: var(--primary-green);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid var(--border-light);
+            color: var(--text-secondary);
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+
+        .btn-secondary:hover {
+            background: var(--surface-white);
+            border-color: var(--primary-green);
+            color: var(--primary-green);
+        }
+
+        /* Container and Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        .section {
+            padding: 64px 0;
+        }
+
+        .section.compact {
+            padding: 48px 0;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--surface-white);
+            padding: 80px 0;
+        }
+
+        .hero-badge {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            color: var(--primary-green);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .hero-title {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+
+        .hero-subtitle {
+            font-size: 20px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 32px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        /* Cards and Grids */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 24px;
+        }
+
+        .benefit-card {
+            background: var(--surface-white);
+            border-radius: 12px;
+            padding: 24px;
+            border: 1px solid var(--border-light);
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+            transition: all 0.2s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .benefit-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--surface-gray);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            color: var(--primary-green);
+            font-size: 20px;
+        }
+
+        .benefit-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .benefit-description {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* Process Steps */
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 32px;
+        }
+
+        .process-step {
+            text-align: center;
+        }
+
+        .step-number {
+            width: 64px;
+            height: 64px;
+            background: var(--primary-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .step-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .step-description {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* Hot Permit Section */
+        .hot-permit-card {
+            background: linear-gradient(135deg, #f0fdf4, var(--surface-white));
+            border: 1px solid var(--primary-green);
+            border-radius: 16px;
+            padding: 32px;
+            margin-top: 24px;
+        }
+
+        .permit-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+
+        .permit-location {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .permit-status {
+            background: #fffbeb;
+            color: #92400e;
+            padding: 6px 12px;
+            border-radius: 16px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .permit-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+        }
+
+        .permit-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .permit-detail {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* Email Signup */
+        .signup-section {
+            background: var(--surface-white);
+            padding: 64px 0;
+            text-align: center;
+        }
+
+        .signup-form {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            align-items: center;
+            margin-top: 32px;
+            flex-wrap: wrap;
+        }
+
+        .form-input {
+            padding: 16px 20px;
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            font-size: 16px;
+            background: var(--surface-white);
+            transition: all 0.2s ease;
+            min-width: 300px;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-green);
+            box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--surface-white);
+            border-top: 1px solid var(--border-light);
+            padding: 48px 0;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .footer-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--primary-green);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 32px;
+        }
+
+        .footer-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s ease;
+        }
+
+        .footer-link:hover {
+            color: var(--primary-green);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+
+            .hero-title {
+                font-size: 36px;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .signup-form {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .form-input {
+                min-width: auto;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        /* Success/Error Messages */
+        .message {
+            padding: 16px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            margin-top: 16px;
+            display: none;
+        }
+
+        .message.success {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            color: var(--success-green);
+            display: block;
+        }
+
+        .message.error {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: var(--error-red);
+            display: block;
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-900">
+<body>
     <!-- Header -->
-    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center py-4">
-                <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </div>
-                    <span class="text-xl font-bold text-gray-900">PermitCrushr</span>
-                    <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">Dumpsters</span>
+    <header class="header">
+        <div class="logo-section">
+            <img src="https://images.squarespace-cdn.com/content/v1/6840c9d1d34a5a1f839c7e81/cfa4ad7a-cb4c-4ca2-9818-3c3c2055c07e/TM-LEAD+CRUSHR+-+B2B+AI+Lead+Generation+%28white-dark%29.jpg?format=750w" 
+                 alt="Lead Crushr" 
+                 style="height: 40px; width: auto;">
+            <span class="badge">PermitCrushr</span>
+        </div>
+        
+        <nav class="nav-links">
+            <a href="#how-it-works" class="nav-link">How it works</a>
+            <a href="#benefits" class="nav-link">Benefits</a>
+            <a href="#hot-permit" class="nav-link">Daily Hot Permit</a>
+            <button onclick="scrollToSignup()" class="btn-primary">
+                Get Daily Feed
+            </button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="animate-fade-up" style="max-width: 700px;">
+                <div class="hero-badge">
+                    ⚡ Be first on the job
                 </div>
-                <div class="flex items-center space-x-4">
-                    <a href="#how-it-works" class="hidden sm:block text-gray-600 hover:text-gray-900">How it works</a>
-                    <a href="#benefits" class="hidden sm:block text-gray-600 hover:text-gray-900">Benefits</a>
-                    <a href="#hot-permit" class="hidden sm:block text-gray-600 hover:text-gray-900">Daily Hot Permit</a>
-                    <button onclick="scrollToSignup()" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
-                        Get Daily Feed
+                <h1 class="hero-title">
+                    Turn filings into rentals with PermitCrushr.
+                </h1>
+                <p class="hero-subtitle">
+                    We monitor construction filings every day and surface the jobs that will need roll‑offs next. No noise, just early signals you can act on.
+                </p>
+                <div class="hero-actions">
+                    <button onclick="scrollToHotPermit()" class="btn-primary">
+                        See Today's Hot Permit →
+                    </button>
+                    <button onclick="scrollToBenefits()" class="btn-secondary">
+                        Why This Works
                     </button>
                 </div>
             </div>
         </div>
-    </header>
+    </section>
 
-    <!-- Hero Section -->
-    <section class="py-20 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-7xl mx-auto">
-            <div class="max-w-3xl animate-fade-up">
-                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm bg-blue-100 text-blue-800 border border-blue-200">
-                    Be first on the job
-                </span>
-                <h1 class="mt-6 text-4xl sm:text-5xl font-bold text-gray-900 leading-tight">
-                    Turn filings into rentals.
-                </h1>
-                <p class="mt-6 text-xl text-gray-600 leading-relaxed">
-                    We monitor construction filings every day and surface the jobs that will need roll‑offs next. No noise, just early signals you can act on.
-                </p>
-                <div class="mt-8 flex flex-wrap gap-4">
-                    <button onclick="scrollToHotPermit()" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition font-semibold">
+    <!-- Benefits Section -->
+    <section id="benefits" class="section" style="background: var(--surface-gray);">
+        <div class="container">
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">⚡</div>
+                    <h3 class="benefit-title">Act Fast</h3>
+                    <p class="benefit-description">Filings are the first public proof a job is real. We flag demo‑adjacent permits so you can stage roll‑offs before the scramble.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">🔍</div>
+                    <h3 class="benefit-title">Stay on Top</h3>
+                    <p class="benefit-description">Daily scans of jurisdictions you care about. Retail refresh? Roof tear‑off? We bubble up the ones that typically need dumpsters.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">📊</div>
+                    <h3 class="benefit-title">Market Pulse</h3>
+                    <p class="benefit-description">See where money is moving — corridors heating up, owners expanding, and neighborhoods with consistent activity.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">🎯</div>
+                    <h3 class="benefit-title">Outmaneuver Competitors</h3>
+                    <p class="benefit-description">Being first buys attention. Show up with availability and street‑loading tips before other haulers call.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">🤝</div>
+                    <h3 class="benefit-title">Build Relationships</h3>
+                    <p class="benefit-description">Consistent, helpful outreach (not salesy) turns early intel into trust — the kind that keeps phones ringing.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">✅</div>
+                    <h3 class="benefit-title">Less Friction</h3>
+                    <p class="benefit-description">We include notes on alley access, staging, and city quirks so jobs run smoother and margins hold.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="section" style="background: var(--surface-white);">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 48px;">
+                <h2 style="font-size: 32px; font-weight: 700; color: var(--text-primary); margin-bottom: 16px;">How It Works</h2>
+                <p style="font-size: 18px; color: var(--text-secondary);">A minimal system that maximizes timing.</p>
+            </div>
+            
+            <div class="process-grid">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Track</h3>
+                    <p class="step-description">We scan filings daily across selected jurisdictions and tag demo‑adjacent jobs.</p>
+                </div>
+
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Filter</h3>
+                    <p class="step-description">We filter by signals that predict dumpster need (interior demo, roof, additions).</p>
+                </div>
+
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Notify</h3>
+                    <p class="step-description">You get a clean list + context — addresses, timing clues, and quick outreach prompts.</p>
+                </div>
+
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h3 class="step-title">Engage</h3>
+                    <p class="step-description">You show up early with availability and helpful guidance. Win work before the noise.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Daily Hot Permit -->
+    <section id="hot-permit" class="section" style="background: var(--surface-gray);">
+        <div class="container">
+            <div style="display: flex; justify-content: space-between; align-items: end; margin-bottom: 24px; flex-wrap: wrap; gap: 16px;">
+                <div>
+                    <h2 style="font-size: 32px; font-weight: 700; color: var(--text-primary); margin-bottom: 8px;">Daily Hot Permit</h2>
+                    <p style="font-size: 16px; color: var(--text-secondary);">One high‑probability job surfaced with context and next steps.</p>
+                </div>
+                <button class="btn-secondary">View Source →</button>
+            </div>
+
+            <div class="hot-permit-card">
+                <div class="permit-header">
+                    <div class="permit-location">
+                        📍 4121 W North Ave, Milwaukee, WI
+                    </div>
+                    <div class="permit-status">Pre-demo</div>
+                </div>
+                
+                <h3 class="permit-title">North Ave Retail Refresh</h3>
+                
+                <div class="permit-details">
+                    <div class="permit-detail">
+                        📅 Filed: Aug 12, 2025
+                    </div>
+                    <div class="permit-detail">
+                        ⏰ Start: Late Aug
+                    </div>
+                    <div class="permit-detail">
+                        🗂️ Likely: 20–30 yd
+                    </div>
+                    <div class="permit-detail">
+                        ⚡ Interior demo + remodel
+                    </div>
+                </div>
+                
+                <p style="color: var(--text-secondary); margin-bottom: 24px;">Small retail space preparing for interior gut; typical need is 20–30 yd roll-off for 1–2 pulls over ~7 days.</p>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 24px;">
+                    <div style="background: var(--surface-white); border-radius: 12px; padding: 20px;">
+                        <h4 style="font-weight: 600; color: var(--text-primary); margin-bottom: 12px;">Why This Matters</h4>
+                        <ul style="list-style: none; color: var(--text-secondary); font-size: 14px; line-height: 1.6;">
+                            <li style="margin-bottom: 8px;">• Demo slated within weeks of filing — dumpster is one of the first orders.</li>
+                            <li style="margin-bottom: 8px;">• Owner is local; faster outreach builds recognition before competitors engage.</li>
+                            <li>• Retail frontage on busy corridor — visibility benefits brand.</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: var(--surface-white); border-radius: 12px; padding: 20px;">
+                        <h4 style="font-weight: 600; color: var(--text-primary); margin-bottom: 12px;">Suggested Next Steps</h4>
+                        <ul style="list-style: none; color: var(--text-secondary); font-size: 14px; line-height: 1.6; margin-bottom: 16px;">
+                            <li style="margin-bottom: 8px;">• Offer a 20 yd roll-off with 48‑hour standby and same-day swap option.</li>
+                            <li style="margin-bottom: 8px;">• Share a one‑page 'street loading best practices' PDF for city requirements.</li>
+                            <li>• Ask for tentative demo dates to pre‑book availability.</li>
+                        </ul>
+                        <div style="display: flex; gap: 8px; flex-direction: column;">
+                            <button onclick="copyOutreachSnippet()" class="btn-primary" style="width: 100%;">
+                                Copy Outreach Snippet
+                            </button>
+                            <button class="btn-secondary" style="width: 100%;">
+                                Add to Route
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Email Signup -->
+    <section id="signup" class="signup-section">
+        <div class="container">
+            <h2 style="font-size: 32px; font-weight: 700; color: var(--text-primary); margin-bottom: 16px;">Get the Daily Feed</h2>
+            <p style="font-size: 18px; color: var(--text-secondary); margin-bottom: 32px;">One concise email each morning with the 3–5 jobs most likely to need dumpsters soon. No fluff.</p>
+            
+            <form id="emailForm" class="signup-form">
+                <input 
+                    type="email" 
+                    id="emailInput"
+                    required 
+                    placeholder="you@company.com" 
+                    class="form-input"
+                >
+                <button type="submit" class="btn-primary">
+                    Subscribe
+                </button>
+            </form>
+            
+            <div id="formMessage" class="message"></div>
+            <p style="margin-top: 16px; font-size: 14px; color: var(--text-muted);">We respect your inbox. Unsubscribe anytime.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div class="footer-logo-icon">🗂️</div>
+                    <span style="font-weight: 700; color: var(--text-primary);">PermitCrushr</span>
+                    <span style="color: var(--text-secondary);">• Dumpster intel, delivered daily</span>
+                </div>
+                <div class="footer-links">
+                    <a href="#" class="footer-link">Privacy</a>
+                    <a href="#" class="footer-link">Terms</a>
+                    <a href="mailto:hello@vaughnai.com" class="footer-link">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition font-semibold">
                         See Today's Hot Permit →
                     </button>
                     <button onclick="scrollToBenefits()" class="border border-gray-300 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-50 transition">
