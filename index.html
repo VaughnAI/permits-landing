@@ -32,8 +32,8 @@
         :root {
             --primary-green: #2e7d32;
             --secondary-green: #43a047;
-            --accent-orange: #ff9800;
-            --accent-blue: #1976d2;
+            --accent-gold: #b8860b;
+            --accent-gold-light: #daa520;
             --surface-white: #ffffff;
             --surface-gray: #f8fafc;
             --border-light: #e2e8f0;
@@ -43,6 +43,10 @@
             --success-green: #4caf50;
             --warning-orange: #ff9800;
             --error-red: #f44336;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
@@ -101,7 +105,7 @@
 
         .badge {
             background: #e0f2fe;
-            color: var(--accent-blue);
+            color: var(--accent-gold);
             padding: 4px 12px;
             border-radius: 20px;
             font-size: 12px;
@@ -170,6 +174,25 @@
             background: var(--surface-white);
             border-color: var(--primary-green);
             color: var(--primary-green);
+        }
+
+        .btn-gold {
+            background: var(--accent-gold);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+
+        .btn-gold:hover {
+            background: var(--accent-gold-light);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(184, 134, 11, 0.3);
         }
 
         /* Container and Layout */
@@ -251,7 +274,7 @@
             <a href="#example-permit" class="nav-link">Example Data</a>
             <a href="#pricing" class="nav-link">Pricing</a>
             <button onclick="scrollToSignup()" class="btn-primary">
-                Get Daily Feed
+                Start Now
             </button>
         </nav>
     </header>
@@ -278,106 +301,6 @@
         </div>
     </section>
 
-    <!-- Daily Hot Permit Section -->
-    <section class="section" style="background: var(--surface-white);">
-        <div class="container">
-            <div style="text-align: center; margin-bottom: 32px;">
-                <h2 style="font-size: 32px; font-weight: 700; color: var(--text-primary); margin-bottom: 16px;">Example: Construction Permit Intelligence</h2>
-                <p style="font-size: 18px; color: var(--text-secondary);">See exactly what you'll receive - real permit data with contact details</p>
-            </div>
-
-            <!-- Permit Card -->
-            <div style="max-width: 800px; margin: 0 auto; background: linear-gradient(135deg, #f0fdf4, var(--surface-white)); border: 1px solid var(--primary-green); border-radius: 16px; padding: 32px;">
-                
-                <!-- Header Info -->
-                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; flex-wrap: wrap; gap: 12px;">
-                    <div>
-                        <div style="background: var(--primary-green); color: white; padding: 8px 16px; border-radius: 8px; font-size: 14px; font-weight: 600; margin-bottom: 8px;">
-                            COMMERCIAL DEMOLITION PERMIT
-                        </div>
-                        <div style="background: #fef2f2; color: #991b1b; padding: 6px 12px; border-radius: 16px; font-size: 12px; font-weight: 600; display: inline-block;">
-                            🎯 95/100 - HIGH PRIORITY
-                        </div>
-                    </div>
-                    <div style="text-align: right; color: var(--text-secondary); font-size: 14px;">
-                        <div><strong>Status:</strong> Active</div>
-                        <div><strong>Filed:</strong> 2025-08-11</div>
-                    </div>
-                </div>
-
-                <!-- Address -->
-                <div style="margin-bottom: 16px;">
-                    <div style="font-size: 18px; font-weight: 600; color: var(--text-primary); margin-bottom: 4px;">
-                        📍 3831 Wilcox Blvd, Chattanooga, TN
-                    </div>
-                </div>
-
-                <!-- Project Details -->
-                <div style="background: var(--surface-white); border-radius: 12px; padding: 20px; margin-bottom: 20px;">
-                    <h4 style="font-size: 16px; font-weight: 600; color: var(--text-primary); margin-bottom: 12px;">Project Description</h4>
-                    <p style="color: var(--text-secondary); font-size: 14px; line-height: 1.5; margin-bottom: 16px;">
-                        One story 515 sq ft apartment unit; interior wall and sheetrock ceiling removal to allow for new wall locations to comply with accessibility.
-                    </p>
-                    
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
-                        <div>
-                            <div style="font-size: 12px; color: var(--text-muted); text-transform: uppercase; font-weight: 600;">Estimated Cost</div>
-                            <div style="font-size: 18px; font-weight: 700; color: var(--text-primary);">$10,000</div>
-                        </div>
-                        <div>
-                            <div style="font-size: 12px; color: var(--text-muted); text-transform: uppercase; font-weight: 600;">Dumpster Value</div>
-                            <div style="font-size: 18px; font-weight: 700; color: var(--primary-green);">$2,500</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Contact Information -->
-                <div style="background: var(--surface-white); border-radius: 12px; padding: 20px; margin-bottom: 20px;">
-                    <h4 style="font-size: 16px; font-weight: 600; color: var(--text-primary); margin-bottom: 12px;">Contact Information</h4>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
-                        <div>
-                            <div style="font-size: 12px; color: var(--text-muted); text-transform: uppercase; font-weight: 600;">Applicant</div>
-                            <div style="font-size: 14px; font-weight: 600; color: var(--text-primary);">William Haynes</div>
-                            <div style="font-size: 12px; color: var(--text-secondary); margin-top: 2px; filter: blur(2px); user-select: none;">r••••••••s@••••••••••••••••••••••••••.com</div>
-                        </div>
-                        <div>
-                            <div style="font-size: 12px; color: var(--text-muted); text-transform: uppercase; font-weight: 600;">Owner</div>
-                            <div style="font-size: 14px; font-weight: 600; color: var(--text-primary);">Eastwood Manor Owner LLC</div>
-                            <div style="font-size: 12px; color: var(--text-secondary); margin-top: 2px; filter: blur(2px); user-select: none;">(•••) •••-••00</div>
-                        </div>
-                        <div>
-                            <div style="font-size: 12px; color: var(--text-muted); text-transform: uppercase; font-weight: 600;">Permit Number</div>
-                            <div style="font-size: 14px; font-weight: 600; color: var(--text-primary);">CDEM-25-212</div>
-                        </div>
-                    </div>
-                    
-                    <div style="background: #fffbeb; border: 1px solid #fbbf24; border-radius: 8px; padding: 12px; margin-top: 16px; text-align: center;">
-                        <div style="font-size: 12px; color: #92400e; font-weight: 600; margin-bottom: 4px;">🔒 CONTACT DETAILS AVAILABLE</div>
-                        <div style="font-size: 11px; color: #92400e;">Full email addresses and phone numbers visible to subscribers</div>
-                    </div>
-                </div>
-
-                <!-- Action Items -->
-                <div style="background: #fffbeb; border: 1px solid #fbbf24; border-radius: 12px; padding: 20px;">
-                    <h4 style="font-size: 16px; font-weight: 600; color: var(--text-primary); margin-bottom: 12px;">💡 Why This Matters</h4>
-                    <ul style="color: var(--text-secondary); font-size: 14px; line-height: 1.6; margin-bottom: 16px; padding-left: 16px;">
-                        <li>Interior demo = immediate dumpster need (10-20 yard container)</li>
-                        <li>Accessibility compliance project = professional, funded work</li>
-                        <li>Small scope = quick turnaround, easy to accommodate</li>
-                    </ul>
-                    
-                    <button onclick="copyOutreachSnippet()" class="btn-primary" style="width: 100%; margin-top: 8px;">
-                        📋 Example Outreach Message
-                    </button>
-                </div>
-            </div>
-
-            <div style="text-align: center; margin-top: 24px; color: var(--text-muted); font-size: 14px;">
-                <strong>Example Only:</strong> Data sourced from Chattanooga public permit records • Contact details blurred for privacy
-            </div>
-        </div>
-    </section>
-
     <!-- How It Works Section -->
     <section id="how-it-works" class="section" style="background: var(--surface-gray);">
         <div class="container">
@@ -394,7 +317,7 @@
                 </div>
 
                 <div style="background: var(--surface-white); border-radius: 12px; padding: 28px; border: 1px solid var(--border-light); text-align: center;">
-                    <div style="width: 60px; height: 60px; background: var(--accent-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; color: white; font-size: 24px; font-weight: 700;">2</div>
+                    <div style="width: 60px; height: 60px; background: var(--accent-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; color: white; font-size: 24px; font-weight: 700;">2</div>
                     <h3 style="font-size: 18px; font-weight: 600; color: var(--text-primary); margin-bottom: 12px;">Score Urgency</h3>
                     <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.6;">Each permit is scored for dumpster likelihood based on project type, scope, and timeline indicators.</p>
                 </div>
@@ -412,7 +335,7 @@
                 </div>
 
                 <div style="background: var(--surface-white); border-radius: 12px; padding: 28px; border: 1px solid var(--border-light); text-align: center;">
-                    <div style="width: 60px; height: 60px; background: var(--accent-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; color: white; font-size: 24px; font-weight: 700;">5</div>
+                    <div style="width: 60px; height: 60px; background: var(--accent-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; color: white; font-size: 24px; font-weight: 700;">5</div>
                     <h3 style="font-size: 18px; font-weight: 600; color: var(--text-primary); margin-bottom: 12px;">Secure Dashboard Access</h3>
                     <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.6;">Permits delivered to your private 2FA dashboard with all contact info and project details ready for outreach.</p>
                 </div>
@@ -420,35 +343,8 @@
         </div>
     </section>
 
-    <!-- Why This Works Section -->
-    <section id="why-this-works" class="section" style="background: var(--surface-white);">
-        <div class="container">
-            <div style="text-align: center; margin-bottom: 48px;">
-                <h2 style="font-size: 32px; font-weight: 700; color: var(--text-primary); margin-bottom: 16px;">Why This Works</h2>
-                <p style="font-size: 18px; color: var(--text-secondary);">The business advantage of early construction intelligence</p>
-            </div>
-            
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px;">
-                <div style="background: var(--surface-gray); border-radius: 12px; padding: 32px;">
-                    <h3 style="font-size: 20px; font-weight: 600; color: var(--text-primary); margin-bottom: 16px;">Early Intelligence = Better Relationships</h3>
-                    <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.6;">When you contact property owners during the planning phase with helpful permit insights and timeline guidance, you're not selling—you're consulting. This builds trust and positions you as the go-to expert before competitors even know the project exists.</p>
-                </div>
-
-                <div style="background: var(--surface-gray); border-radius: 12px; padding: 32px;">
-                    <h3 style="font-size: 20px; font-weight: 600; color: var(--text-primary); margin-bottom: 16px;">Market Timing Advantage</h3>
-                    <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.6;">Construction projects have a 2-4 week window from permit filing to material orders. Contacting during this planning phase means you're solving logistical problems, not competing on price. Property owners appreciate early coordination and often lock in service providers before shopping around.</p>
-                </div>
-
-                <div style="background: var(--surface-gray); border-radius: 12px; padding: 32px;">
-                    <h3 style="font-size: 20px; font-weight: 600; color: var(--text-primary); margin-bottom: 16px;">Competitive Intelligence</h3>
-                    <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.6;">Staying ahead of construction and demo projects in your market provides broader business intelligence—tracking development patterns, identifying growing contractors to partner with, and understanding seasonal demand before it peaks. This strategic view transforms reactive businesses into proactive market leaders.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Example Permit Section -->
-    <section id="example-permit" class="section" style="background: var(--surface-gray);">
+    <section id="example-permit" class="section" style="background: var(--surface-white);">
         <div class="container">
             <div style="text-align: center; margin-bottom: 32px;">
                 <h2 style="font-size: 32px; font-weight: 700; color: var(--text-primary); margin-bottom: 16px;">Example: Construction Permit Intelligence</h2>
@@ -520,14 +416,14 @@
                         </div>
                     </div>
                     
-                    <div style="background: #fffbeb; border: 1px solid #fbbf24; border-radius: 8px; padding: 12px; margin-top: 16px; text-align: center;">
-                        <div style="font-size: 12px; color: #92400e; font-weight: 600; margin-bottom: 4px;">🔒 CONTACT DETAILS AVAILABLE</div>
-                        <div style="font-size: 11px; color: #92400e;">Full email addresses and phone numbers visible to subscribers</div>
+                    <div style="background: #fffbeb; border: 1px solid var(--accent-gold); border-radius: 8px; padding: 12px; margin-top: 16px; text-align: center;">
+                        <div style="font-size: 12px; color: var(--accent-gold); font-weight: 600; margin-bottom: 4px;">🔒 CONTACT DETAILS AVAILABLE</div>
+                        <div style="font-size: 11px; color: var(--accent-gold);">Full email addresses and phone numbers visible to subscribers</div>
                     </div>
                 </div>
 
                 <!-- Action Items -->
-                <div style="background: #fffbeb; border: 1px solid #fbbf24; border-radius: 12px; padding: 20px;">
+                <div style="background: #fffbeb; border: 1px solid var(--accent-gold); border-radius: 12px; padding: 20px;">
                     <h4 style="font-size: 16px; font-weight: 600; color: var(--text-primary); margin-bottom: 12px;">💡 Why This Matters</h4>
                     <ul style="color: var(--text-secondary); font-size: 14px; line-height: 1.6; margin-bottom: 16px; padding-left: 16px;">
                         <li>Interior demo = immediate dumpster need (10-20 yard container)</li>
@@ -543,6 +439,33 @@
 
             <div style="text-align: center; margin-top: 24px; color: var(--text-muted); font-size: 14px;">
                 <strong>Example Only:</strong> Data sourced from Chattanooga public permit records • Contact details blurred for privacy
+            </div>
+        </div>
+    </section>
+
+    <!-- Why This Works Section -->
+    <section id="why-this-works" class="section" style="background: var(--surface-gray);">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 48px;">
+                <h2 style="font-size: 32px; font-weight: 700; color: var(--text-primary); margin-bottom: 16px;">Why This Works</h2>
+                <p style="font-size: 18px; color: var(--text-secondary);">The business advantage of early construction intelligence</p>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px;">
+                <div style="background: var(--surface-white); border-radius: 12px; padding: 32px;">
+                    <h3 style="font-size: 20px; font-weight: 600; color: var(--text-primary); margin-bottom: 16px;">Early Intelligence = Better Relationships</h3>
+                    <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.6;">When you contact property owners during the planning phase with helpful permit insights and timeline guidance, you're not selling—you're consulting. This builds trust and positions you as the go-to expert before competitors even know the project exists.</p>
+                </div>
+
+                <div style="background: var(--surface-white); border-radius: 12px; padding: 32px;">
+                    <h3 style="font-size: 20px; font-weight: 600; color: var(--text-primary); margin-bottom: 16px;">Market Timing Advantage</h3>
+                    <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.6;">Construction projects have a 2-4 week window from permit filing to material orders. Contacting during this planning phase means you're solving logistical problems, not competing on price. Property owners appreciate early coordination and often lock in service providers before shopping around.</p>
+                </div>
+
+                <div style="background: var(--surface-white); border-radius: 12px; padding: 32px;">
+                    <h3 style="font-size: 20px; font-weight: 600; color: var(--text-primary); margin-bottom: 16px;">Competitive Intelligence</h3>
+                    <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.6;">Staying ahead of construction and demo projects in your market provides broader business intelligence—tracking development patterns, identifying growing contractors to partner with, and understanding seasonal demand before it peaks. This strategic view transforms reactive businesses into proactive market leaders.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -563,32 +486,11 @@
                     <div style="font-size: 14px; color: var(--text-muted); margin-bottom: 24px;">per month</div>
                     
                     <ul style="text-align: left; list-style: none; margin-bottom: 32px;">
-                        <li style="padding: 8px 0; border-bottom: 1px solid var(--border-light); color: var(--text-secondary);">Weekly permit roundup</li>
-                        <li style="padding: 8px 0; border-bottom: 1px solid var(--border-light); color: var(--text-secondary);">Basic permit data</li>
-                        <li style="padding: 8px 0; border-bottom: 1px solid var(--border-light); color: var(--text-secondary);">Dashboard access</li>
-                        <li style="padding: 8px 0; color: var(--text-secondary);">Email support</li>
-                    </ul>
-                    
-                    <button style="width: 100%; background: var(--border-light); color: var(--text-secondary); border: none; padding: 14px; border-radius: 8px; font-weight: 600;">Get Started</button>
-                </div>
-
-                <!-- Daily Monitoring -->
-                <div style="background: var(--surface-white); border: 2px solid var(--primary-green); border-radius: 16px; padding: 32px; text-align: center; position: relative;">
-                    <div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--primary-green); color: white; padding: 6px 20px; border-radius: 20px; font-size: 12px; font-weight: 600;">MOST POPULAR</div>
-                    
-                    <h3 style="font-size: 24px; font-weight: 700; color: var(--text-primary); margin-bottom: 8px;">Daily Monitoring</h3>
-                    <div style="font-size: 48px; font-weight: 700; color: var(--primary-green); margin-bottom: 8px;">$497</div>
-                    <div style="font-size: 14px; color: var(--text-muted); margin-bottom: 24px;">per month</div>
-                    
-                    <ul style="text-align: left; list-style: none; margin-bottom: 32px;">
-                        <li style="padding: 8px 0; border-bottom: 1px solid var(--border-light); color: var(--text-secondary);">Daily permit monitoring</li>
-                        <li style="padding: 8px 0; border-bottom: 1px solid var(--border-light); color: var(--text-secondary);">Priority scoring</li>
-                        <li style="padding: 8px 0; border-bottom: 1px solid var(--border-light); color: var(--text-secondary);">Applicant contact info</li>
                         <li style="padding: 8px 0; border-bottom: 1px solid var(--border-light); color: var(--text-secondary);">Project scope details</li>
                         <li style="padding: 8px 0; color: var(--text-secondary);">Priority support</li>
                     </ul>
                     
-                    <button style="width: 100%; background: var(--primary-green); color: white; border: none; padding: 14px; border-radius: 8px; font-weight: 600;">Get Started</button>
+                    <button onclick="scrollToSignup()" class="btn-primary" style="width: 100%;">Get Started</button>
                 </div>
 
                 <!-- Premium -->
@@ -605,98 +507,14 @@
                         <li style="padding: 8px 0; color: var(--text-secondary);">White-glove support</li>
                     </ul>
                     
-                    <button style="width: 100%; background: var(--accent-blue); color: white; border: none; padding: 14px; border-radius: 8px; font-weight: 600;">Get Started</button>
-                </div>
-            </div>
-        </div>
-    </section>font-size: 18px; color: var(--text-secondary);">The business advantage of early construction intelligence</p>
-            </div>
-            
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px;">
-                <div style="background: var(--surface-gray); border-radius: 12px; padding: 32px;">
-                    <h3 style="font-size: 20px; font-weight: 600; color: var(--text-primary); margin-bottom: 16px;">Early Intelligence = Better Relationships</h3>
-                    <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.6;">When you contact property owners during the planning phase with helpful permit insights and timeline guidance, you're not selling—you're consulting. This builds trust and positions you as the go-to expert before competitors even know the project exists.</p>
-                </div>
-
-                <div style="background: var(--surface-gray); border-radius: 12px; padding: 32px;">
-                    <h3 style="font-size: 20px; font-weight: 600; color: var(--text-primary); margin-bottom: 16px;">Market Timing Advantage</h3>
-                    <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.6;">Construction projects have a 2-4 week window from permit filing to material orders. Contacting during this planning phase means you're solving logistical problems, not competing on price. Property owners appreciate early coordination and often lock in service providers before shopping around.</p>
-                </div>
-
-                <div style="background: var(--surface-gray); border-radius: 12px; padding: 32px;">
-                    <h3 style="font-size: 20px; font-weight: 600; color: var(--text-primary); margin-bottom: 16px;">Competitive Intelligence</h3>
-                    <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.6;">Staying ahead of construction and demo projects in your market provides broader business intelligence—tracking development patterns, identifying growing contractors to partner with, and understanding seasonal demand before it peaks. This strategic view transforms reactive businesses into proactive market leaders.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing Section -->
-    <section class="section" style="background: var(--surface-gray);">
-        <div class="container">
-            <div style="text-align: center; margin-bottom: 48px;">
-                <h2 style="font-size: 32px; font-weight: 700; color: var(--text-primary); margin-bottom: 16px;">Choose Your Plan</h2>
-                <p style="font-size: 18px; color: var(--text-secondary);">Get started with permit intelligence for your market</p>
-            </div>
-            
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; max-width: 1000px; margin: 0 auto;">
-                <!-- Weekly Updates -->
-                <div style="background: var(--surface-white); border-radius: 16px; padding: 32px; border: 1px solid var(--border-light); text-align: center;">
-                    <h3 style="font-size: 24px; font-weight: 700; color: var(--text-primary); margin-bottom: 8px;">Weekly Updates</h3>
-                    <div style="font-size: 48px; font-weight: 700; color: var(--primary-green); margin-bottom: 8px;">$297</div>
-                    <div style="font-size: 14px; color: var(--text-muted); margin-bottom: 24px;">per month</div>
-                    
-                    <ul style="text-align: left; list-style: none; margin-bottom: 32px;">
-                        <li style="padding: 8px 0; border-bottom: 1px solid var(--border-light); color: var(--text-secondary);">Weekly permit roundup</li>
-                        <li style="padding: 8px 0; border-bottom: 1px solid var(--border-light); color: var(--text-secondary);">Basic permit data</li>
-                        <li style="padding: 8px 0; border-bottom: 1px solid var(--border-light); color: var(--text-secondary);">Dashboard access</li>
-                        <li style="padding: 8px 0; color: var(--text-secondary);">Email support</li>
-                    </ul>
-                    
-                    <button style="width: 100%; background: var(--border-light); color: var(--text-secondary); border: none; padding: 14px; border-radius: 8px; font-weight: 600;">Get Started</button>
-                </div>
-
-                <!-- Daily Monitoring -->
-                <div style="background: var(--surface-white); border: 2px solid var(--primary-green); border-radius: 16px; padding: 32px; text-align: center; position: relative;">
-                    <div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--primary-green); color: white; padding: 6px 20px; border-radius: 20px; font-size: 12px; font-weight: 600;">MOST POPULAR</div>
-                    
-                    <h3 style="font-size: 24px; font-weight: 700; color: var(--text-primary); margin-bottom: 8px;">Daily Monitoring</h3>
-                    <div style="font-size: 48px; font-weight: 700; color: var(--primary-green); margin-bottom: 8px;">$497</div>
-                    <div style="font-size: 14px; color: var(--text-muted); margin-bottom: 24px;">per month</div>
-                    
-                    <ul style="text-align: left; list-style: none; margin-bottom: 32px;">
-                        <li style="padding: 8px 0; border-bottom: 1px solid var(--border-light); color: var(--text-secondary);">Daily permit monitoring</li>
-                        <li style="padding: 8px 0; border-bottom: 1px solid var(--border-light); color: var(--text-secondary);">Priority scoring</li>
-                        <li style="padding: 8px 0; border-bottom: 1px solid var(--border-light); color: var(--text-secondary);">Applicant contact info</li>
-                        <li style="padding: 8px 0; border-bottom: 1px solid var(--border-light); color: var(--text-secondary);">Project scope details</li>
-                        <li style="padding: 8px 0; color: var(--text-secondary);">Priority support</li>
-                    </ul>
-                    
-                    <button style="width: 100%; background: var(--primary-green); color: white; border: none; padding: 14px; border-radius: 8px; font-weight: 600;">Get Started</button>
-                </div>
-
-                <!-- Premium -->
-                <div style="background: var(--surface-white); border-radius: 16px; padding: 32px; border: 1px solid var(--border-light); text-align: center;">
-                    <h3 style="font-size: 24px; font-weight: 700; color: var(--text-primary); margin-bottom: 8px;">Premium</h3>
-                    <div style="font-size: 48px; font-weight: 700; color: var(--primary-green); margin-bottom: 8px;">$697</div>
-                    <div style="font-size: 14px; color: var(--text-muted); margin-bottom: 24px;">per month</div>
-                    
-                    <ul style="text-align: left; list-style: none; margin-bottom: 32px;">
-                        <li style="padding: 8px 0; border-bottom: 1px solid var(--border-light); color: var(--text-secondary);">Everything in Daily</li>
-                        <li style="padding: 8px 0; border-bottom: 1px solid var(--border-light); color: var(--text-secondary);">Apollo & Snovio enrichment</li>
-                        <li style="padding: 8px 0; border-bottom: 1px solid var(--border-light); color: var(--text-secondary);">Contact scripts & templates</li>
-                        <li style="padding: 8px 0; border-bottom: 1px solid var(--border-light); color: var(--text-secondary);">Enhanced contact data</li>
-                        <li style="padding: 8px 0; color: var(--text-secondary);">White-glove support</li>
-                    </ul>
-                    
-                    <button style="width: 100%; background: var(--accent-blue); color: white; border: none; padding: 14px; border-radius: 8px; font-weight: 600;">Get Started</button>
+                    <button onclick="scrollToSignup()" class="btn-gold" style="width: 100%;">Get Started</button>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Signup Form Section -->
-    <section class="section" style="background: var(--surface-white);">
+    <section id="signup" class="section" style="background: var(--surface-gray);">
         <div class="container">
             <div style="text-align: center; margin-bottom: 40px;">
                 <h2 style="font-size: 32px; font-weight: 700; color: var(--text-primary); margin-bottom: 16px;">Get Your Market's Daily Construction Permits</h2>
@@ -712,7 +530,7 @@
             </div>
 
             <!-- Form -->
-            <form name="permit-signup" method="POST" data-netlify="true" style="max-width: 700px; margin: 0 auto; background: var(--surface-gray); border-radius: 16px; padding: 40px; border: 1px solid var(--border-light); box-shadow: 0 4px 12px rgba(0,0,0,.05);">
+            <form name="permit-signup" method="POST" data-netlify="true" style="max-width: 700px; margin: 0 auto; background: var(--surface-white); border-radius: 16px; padding: 40px; border: 1px solid var(--border-light); box-shadow: 0 4px 12px rgba(0,0,0,.05);">
                 <input type="hidden" name="form-name" value="permit-signup" />
                 
                 <!-- Personal Info Row -->
@@ -750,44 +568,6 @@
                 <div style="margin-bottom: 32px;">
                     <label style="display: block; font-weight: 600; color: var(--text-primary); margin-bottom: 12px; font-size: 14px;">Types of Projects You Want to Track *</label>
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px;">
-                        <label style="display: flex; align-items: center; gap: 8px; padding: 8px; border: 1px solid var(--border-light); border-radius: 6px; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.background='var(--surface-white)'" onmouseout="this.style.background='transparent'">
-                            <input type="checkbox" name="project_types" value="residential_demo" style="margin: 0;" />
-                            <span style="font-size: 14px;">Residential Demo/Renovation</span>
-                        </label>
-                        <label style="display: flex; align-items: center; gap: 8px; padding: 8px; border: 1px solid var(--border-light); border-radius: 6px; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.background='var(--surface-white)'" onmouseout="this.style.background='transparent'">
-                            <input type="checkbox" name="project_types" value="commercial_demo" style="margin: 0;" />
-                            <span style="font-size: 14px;">Commercial Demo/Buildout</span>
-                        </label>
-                        <label style="display: flex; align-items: center; gap: 8px; padding: 8px; border: 1px solid var(--border-light); border-radius: 6px; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.background='var(--surface-white)'" onmouseout="this.style.background='transparent'">
-                            <input type="checkbox" name="project_types" value="new_construction" style="margin: 0;" />
-                            <span style="font-size: 14px;">New Construction</span>
-                        </label>
-                        <label style="display: flex; align-items: center; gap: 8px; padding: 8px; border: 1px solid var(--border-light); border-radius: 6px; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.background='var(--surface-white)'" onmouseout="this.style.background='transparent'">
-                            <input type="checkbox" name="project_types" value="roofing" style="margin: 0;" />
-                            <span style="font-size: 14px;">Roofing Projects</span>
-                        </label>
-                        <label style="display: flex; align-items: center; gap: 8px; padding: 8px; border: 1px solid var(--border-light); border-radius: 6px; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.background='var(--surface-white)'" onmouseout="this.style.background='transparent'">
-                            <input type="checkbox" name="project_types" value="retail_restaurant" style="margin: 0;" />
-                            <span style="font-size: 14px;">Retail/Restaurant Refresh</span>
-                        </label>
-                        <label style="display: flex; align-items: center; gap: 8px; padding: 8px; border: 1px solid var(--border-light); border-radius: 6px; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.background='var(--surface-white)'" onmouseout="this.style.background='transparent'">
-                            <input type="checkbox" name="project_types" value="all" style="margin: 0;" />
-                            <span style="font-size: 14px; font-weight: 600;">All Project Types</span>
-                        </label>
-                    </div>
-                </div>
-
-                <!-- Submit Button -->
-                <button type="submit" style="width: 100%; background: var(--primary-green); color: white; border: none; padding: 16px 24px; border-radius: 10px; font-size: 18px; font-weight: 700; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(46, 125, 50, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(46, 125, 50, 0.3)'">
-                    Start Getting Daily Permits (Setup Fee Waived)
-                </button>
-
-                <div style="text-align: center; margin-top: 16px; font-size: 12px; color: var(--text-muted);">
-                    No spam. Cancel anytime. We'll contact you within 24 hours to set up your feed.
-                </div>
-            </form>
-        </div>
-    </section>-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px;">
                         <label style="display: flex; align-items: center; gap: 8px; padding: 8px; border: 1px solid var(--border-light); border-radius: 6px; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.background='var(--surface-gray)'" onmouseout="this.style.background='transparent'">
                             <input type="checkbox" name="project_types" value="residential_demo" style="margin: 0;" />
                             <span style="font-size: 14px;">Residential Demo/Renovation</span>
@@ -817,7 +597,7 @@
 
                 <!-- Submit Button -->
                 <button type="submit" style="width: 100%; background: var(--primary-green); color: white; border: none; padding: 16px 24px; border-radius: 10px; font-size: 18px; font-weight: 700; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(46, 125, 50, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(46, 125, 50, 0.3)'">
-                    🚀 Start Getting Daily Permits ($197 Setup Fee Waived)
+                    🚀 Start Getting Daily Permits (Setup Fee Waived)
                 </button>
 
                 <div style="text-align: center; margin-top: 16px; font-size: 12px; color: var(--text-muted);">
@@ -870,7 +650,7 @@ Best regards,
 
         // Smooth scrolling functions
         function scrollToSignup() {
-            document.querySelector('form[name="permit-signup"]').scrollIntoView({ behavior: 'smooth' });
+            document.querySelector('#signup').scrollIntoView({ behavior: 'smooth' });
         }
 
         function scrollToExample() {
@@ -886,7 +666,25 @@ Best regards,
         }
     </script>
 </body>
-</html>
-    </script>
-</body>
-</html>
+</html>--border-light); color: var(--text-secondary);">Weekly permit roundup</li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid var(--border-light); color: var(--text-secondary);">Basic permit data</li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid var(--border-light); color: var(--text-secondary);">Dashboard access</li>
+                        <li style="padding: 8px 0; color: var(--text-secondary);">Email support</li>
+                    </ul>
+                    
+                    <button onclick="scrollToSignup()" class="btn-secondary" style="width: 100%;">Get Started</button>
+                </div>
+
+                <!-- Daily Monitoring -->
+                <div style="background: var(--surface-white); border: 2px solid var(--primary-green); border-radius: 16px; padding: 32px; text-align: center; position: relative;">
+                    <div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--primary-green); color: white; padding: 6px 20px; border-radius: 20px; font-size: 12px; font-weight: 600;">MOST POPULAR</div>
+                    
+                    <h3 style="font-size: 24px; font-weight: 700; color: var(--text-primary); margin-bottom: 8px;">Daily Monitoring</h3>
+                    <div style="font-size: 48px; font-weight: 700; color: var(--primary-green); margin-bottom: 8px;">$497</div>
+                    <div style="font-size: 14px; color: var(--text-muted); margin-bottom: 24px;">per month</div>
+                    
+                    <ul style="text-align: left; list-style: none; margin-bottom: 32px;">
+                        <li style="padding: 8px 0; border-bottom: 1px solid var(--border-light); color: var(--text-secondary);">Daily permit monitoring</li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid var(--border-light); color: var(--text-secondary);">Priority scoring</li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid var(--border-light); color: var(--text-secondary);">Applicant contact info</li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid var(
