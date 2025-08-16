@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PermitCrushr - Construction Permit Intelligence for Dumpster Companies</title>
+    <meta name="description" content="Turn construction permit filings into dumpster rentals. Daily permit intelligence for waste management companies.">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Turn Construction Permits Into Dumpster Rentals" />
+    <meta property="og:description" content="Daily permit intelligence for waste management companies. See who's building before your competition does." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://permits.vaughnai.com" />
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            900: '#1e3a8a'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .animate-fade-up {
+            animation: fadeUp 0.6s ease-out forwards;
+        }
+        
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </div>
+                    <span class="text-xl font-bold text-gray-900">PermitCrushr</span>
+                    <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">Dumpsters</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="#how-it-works" class="hidden sm:block text-gray-600 hover:text-gray-900">How it works</a>
+                    <a href="#benefits" class="hidden sm:block text-gray-600 hover:text-gray-900">Benefits</a>
+                    <a href="#hot-permit" class="hidden sm:block text-gray-600 hover:text-gray-900">Daily Hot Permit</a>
+                    <button onclick="scrollToSignup()" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+                        Get Daily Feed
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="max-w-3xl animate-fade-up">
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm bg-blue-100 text-blue-800 border border-blue-200">
+                    Be first on the job
+                </span>
+                <h1 class="mt-6 text-4xl sm:text-5xl font-bold text-gray-900 leading-tight">
+                    Turn filings into rentals.
+                </h1>
+                <p class="mt-6 text-xl text-gray-600 leading-relaxed">
+                    We monitor construction filings every day and surface the jobs that will need roll‑offs next. No noise, just early signals you can act on.
+                </p>
+                <div class="mt-8 flex flex-wrap gap-4">
+                    <button onclick="scrollToHotPermit()" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition font-semibold">
+                        See Today's Hot Permit →
+                    </button>
+                    <button onclick="scrollToBenefits()" class="border border-gray-300 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-50 transition">
+                        Why This Works
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="benefits" class="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-gray-50 rounded-xl p-6">
+                    <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Act Fast</h3>
+                    <p class="text-gray-600 text-sm">Filings are the first public proof a job is real. We flag demo‑adjacent permits so you can stage roll‑offs before the scramble.</p>
+                </div>
+
+                <div class="bg-gray-50 rounded-xl p-6">
+                    <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-5 5v-5zM4 19l5-5 5 5H4z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Stay on Top</h3>
+                    <p class="text-gray-600 text-sm">Daily scans of jurisdictions you care about. Retail refresh? Roof tear‑off? We bubble up the ones that typically need dumpsters.</p>
+                </div>
+
+                <div class="bg-gray-50 rounded-xl p-6">
+                    <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Market Pulse</h3>
+                    <p class="text-gray-600 text-sm">See where money is moving — corridors heating up, owners expanding, and neighborhoods with consistent activity.</p>
+                </div>
+
+                <div class="bg-gray-50 rounded-xl p-6">
+                    <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Outmaneuver Competitors</h3>
+                    <p class="text-gray-600 text-sm">Being first buys attention. Show up with availability and street‑loading tips before other haulers call.</p>
+                </div>
+
+                <div class="bg-gray-50 rounded-xl p-6">
+                    <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Build Relationships</h3>
+                    <p class="text-gray-600 text-sm">Consistent, helpful outreach (not salesy) turns early intel into trust — the kind that keeps phones ringing.</p>
+                </div>
+
+                <div class="bg-gray-50 rounded-xl p-6">
+                    <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Less Friction</h3>
+                    <p class="text-gray-600 text-sm">We include notes on alley access, staging, and city quirks so jobs run smoother and margins hold.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">How It Works</h2>
+                <p class="text-xl text-gray-600">A minimal system that maximizes timing.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-white font-bold text-xl">1</span>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Track</h3>
+                    <p class="text-gray-600">We scan filings daily across selected jurisdictions and tag demo‑adjacent jobs.</p>
+                </div>
+
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-white font-bold text-xl">2</span>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Filter</h3>
+                    <p class="text-gray-600">We filter by signals that predict dumpster need (interior demo, roof, additions).</p>
+                </div>
+
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-white font-bold text-xl">3</span>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Notify</h3>
+                    <p class="text-gray-600">You get a clean list + context — addresses, timing clues, and quick outreach prompts.</p>
+                </div>
+
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-white font-bold text-xl">4</span>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Engage</h3>
+                    <p class="text-gray-600">You show up early with availability and helpful guidance. Win work before the noise.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Daily Hot Permit -->
+    <section id="hot-permit" class="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex justify-between items-end mb-8">
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-900 mb-2">Daily Hot Permit</h2>
+                    <p class="text-gray-600">One high‑probability job surfaced with context and next steps.</p>
+                </div>
+                <button class="text-blue-600 hover:text-blue-700 font-medium">View Source →</button>
+            </div>
+
+            <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <div class="lg:col-span-2">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="flex items-center text-gray-600">
+                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                                <span class="text-sm">4121 W North Ave, Milwaukee, WI</span>
+                            </div>
+                            <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-xs font-medium">Pre-demo</span>
+                        </div>
+                        
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">North Ave Retail Refresh</h3>
+                        
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
+                            <div class="flex items-center text-sm text-gray-600">
+                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                </svg>
+                                Filed: Aug 12, 2025
+                            </div>
+                            <div class="flex items-center text-sm text-gray-600">
+                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                Start: Late Aug
+                            </div>
+                            <div class="flex items-center text-sm text-gray-600">
+                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                                Likely: 20–30 yd
+                            </div>
+                            <div class="flex items-center text-sm text-gray-600">
+                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                </svg>
+                                Interior demo + remodel
+                            </div>
+                        </div>
+                        
+                        <p class="text-gray-700">Small retail space preparing for interior gut; typical need is 20–30 yd roll-off for 1–2 pulls over ~7 days.</p>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="bg-white rounded-xl p-6">
+                            <h4 class="font-semibold text-gray-900 mb-3">Why This Matters</h4>
+                            <ul class="space-y-2 text-sm text-gray-600">
+                                <li class="flex items-start">
+                                    <span class="w-1.5 h-1.5 bg-blue-600 rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                                    Demo slated within weeks of filing — dumpster is one of the first orders.
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="w-1.5 h-1.5 bg-blue-600 rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                                    Owner is local; faster outreach builds recognition before competitors engage.
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="w-1.5 h-1.5 bg-blue-600 rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                                    Retail frontage on busy corridor — visibility benefits brand.
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-white rounded-xl p-6">
+                            <h4 class="font-semibold text-gray-900 mb-3">Suggested Next Steps</h4>
+                            <ul class="space-y-2 text-sm text-gray-600 mb-4">
+                                <li class="flex items-start">
+                                    <span class="w-1.5 h-1.5 bg-green-600 rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                                    Offer a 20 yd roll-off with 48‑hour standby and same-day swap option.
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="w-1.5 h-1.5 bg-green-600 rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                                    Share a one‑page 'street loading best practices' PDF for city requirements.
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="w-1.5 h-1.5 bg-green-600 rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                                    Ask for tentative demo dates to pre‑book availability.
+                                </li>
+                            </ul>
+                            <button onclick="copyOutreachSnippet()" class="w-full bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition mb-2">
+                                Copy Outreach Snippet
+                            </button>
+                            <button class="w-full border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition">
+                                Add to Route
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Email Signup -->
+    <section id="signup" class="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-3xl mx-auto text-center">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">Get the Daily Feed</h2>
+            <p class="text-xl text-gray-600 mb-8">One concise email each morning with the 3–5 jobs most likely to need dumpsters soon. No fluff.</p>
+            
+            <form id="emailForm" class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <input 
+                    type="email" 
+                    id="emailInput"
+                    required 
+                    placeholder="you@company.com" 
+                    class="w-full sm:w-96 px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                >
+                <button 
+                    type="submit"
+                    class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition font-semibold whitespace-nowrap"
+                >
+                    Subscribe
+                </button>
+            </form>
+            
+            <div id="formMessage" class="mt-4 hidden"></div>
+            <p class="mt-4 text-sm text-gray-500">We respect your inbox. Unsubscribe anytime.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-200 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col sm:flex-row justify-between items-center">
+                <div class="flex items-center space-x-3 mb-4 sm:mb-0">
+                    <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </div>
+                    <span class="font-bold text-gray-900">PermitCrushr</span>
+                    <span class="text-gray-600">• Dumpster intel, delivered daily</span>
+                </div>
+                <div class="flex space-x-6 text-sm text-gray-600">
+                    <a href="#" class="hover:text-gray-900">Privacy</a>
+                    <a href="#" class="hover:text-gray-900">Terms</a>
+                    <a href="mailto:hello@vaughnai.com" class="hover:text-gray-900">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Form submission
+        document.getElementById('emailForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('emailInput').value;
+            const messageDiv = document.getElementById('formMessage');
+            
+            try {
+                // Create form data
+                const formData = new FormData();
+                formData.append('to', 'hello@vaughnai.com');
+                formData.append('subject', 'New PermitCrushr Signup');
+                formData.append('body', `New signup from: ${email}\nSource: permits.vaughnai.com\nTimestamp: ${new Date().toISOString()}`);
+                
+                // Simple mailto fallback (most reliable)
+                window.location.href = `mailto:hello@vaughnai.com?subject=New PermitCrushr Signup&body=New signup from: ${email}%0D%0ASource: permits.vaughnai.com%0D%0ATimestamp: ${new Date().toISOString()}`;
+                
+                // Show success message
+                messageDiv.className = 'mt-4 p-4 bg-green-100 text-green-800 rounded-lg';
+                messageDiv.textContent = 'Thank you! We will get in contact with you shortly.';
+                messageDiv.classList.remove('hidden');
+                
+                // Clear form
+                document.getElementById('emailInput').value = '';
+                
+            } catch (error) {
+                console.error('Form submission error:', error);
+                messageDiv.className = 'mt-4 p-4 bg-red-100 text-red-800 rounded-lg';
+                messageDiv.textContent = 'Something went wrong. Please email us directly at hello@vaughnai.com';
+                messageDiv.classList.remove('hidden');
+            }
+        });
+
+        // Copy outreach snippet
+        function copyOutreachSnippet() {
+            const snippet = `Subject: Dumpster availability for upcoming demo
+
+Noticed your upcoming interior demo at 4121 W North Ave. We can stage a 20–30 yd roll-off with 48‑hour standby and same‑day swap. 
+
+Quick question: do you have demo dates yet? Happy to pencil in availability.
+
+Best regards,
+[Your Name]
+[Your Company]`;
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(snippet).then(() => {
+                    alert('Outreach snippet copied to clipboard!');
+                }).catch(() => {
+                    fallbackCopy(snippet);
+                });
+            } else {
+                fallbackCopy(snippet);
+            }
+        }
+
+        function fallbackCopy(text) {
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            alert('Outreach snippet copied to clipboard!');
+        }
+
+        // Smooth scrolling functions
+        function scrollToSignup() {
+            document.getElementById('signup').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function scrollToHotPermit() {
+            document.getElementById('hot-permit').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function scrollToBenefits() {
+            document.getElementById('benefits').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-up');
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
