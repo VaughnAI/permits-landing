@@ -1,1287 +1,412 @@
-/* Container and Layout */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 32px;
-        }
-
-        .section {
-            padding: 64px 0;
-        }
-
-        .section.compact {
-            padding: 48px 0;
-        }<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PermitCrushr - Construction Permit Intelligence for Dumpster Companies</title>
-    <meta name="description" content="Turn construction permit filings into dumpster rentals. Daily permit intelligence for waste management companies.">
-    
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Turn Construction Permits Into Dumpster Rentals" />
-    <meta property="og:description" content="Daily permit intelligence for waste management companies. See who's building before your competition does." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://permits.vaughnai.com" />
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <style>
-        /* Reset and Base Styles - Match Lead Crushr Dashboard */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary-green: #2e7d32;
-            --secondary-green: #43a047;
-            --accent-orange: #ff9800;
-            --accent-blue: #1976d2;
-            --surface-white: #ffffff;
-            --surface-gray: #f8fafc;
-            --border-light: #e2e8f0;
-            --text-primary: #1e293b;
-            --text-secondary: #64748b;
-            --text-muted: #94a3b8;
-            --success-green: #4caf50;
-            --warning-orange: #ff9800;
-            --error-red: #f44336;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--surface-gray);
-            color: var(--text-primary);
-            line-height: 1.5;
-            font-weight: 400;
-        }
-
-        .animate-fade-up {
-            animation: fadeUp 0.6s ease-out forwards;
-        }
-        
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Header Styles - Match Dashboard */
-        .header {
-            background: var(--surface-white);
-            border-bottom: 1px solid var(--border-light);
-            padding: 16px 32px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
-            position: sticky;
-            top: 0;
-            z-index: 50;
-        }
-
-        .logo-section {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .logo-container {
-            width: 40px;
-            height: 40px;
-            background: var(--primary-green);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 20px;
-            font-weight: 700;
-        }
-
-        .logo-text {
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--text-primary);
-        }
-
-        .badge {
-            background: #e0f2fe;
-            color: var(--accent-blue);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .nav-link {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            padding: 8px 16px;
-            border-radius: 8px;
-            transition: all 0.2s ease;
-        }
-
-        .nav-link:hover {
-            background: var(--surface-gray);
-            color: var(--primary-green);
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            border: 1px solid var(--border-light);
-            color: var(--text-secondary);
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            text-decoration: none;
-        }
-
-        .btn-secondary:hover {
-            background: var(--surface-white);
-            border-color: var(--primary-green);
-            color: var(--primary-green);
-        }
-
-        h1,h2,h3,h4 {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            letter-spacing: -0.01em;
-        }
-
-        /* Header improvements */
-        .header {
-            background: var(--surface-white);
-            border-bottom: 1px solid var(--border-light);
-            padding: 16px 32px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
-            position: sticky;
-            top: 0;
-            z-index: 50;
-        }
-
-        .logo-section {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .logo-section img {
-            height: 200px;
-            width: auto;
-            object-fit: contain;
-        }
-
-        .badge {
-            background: #e0f2fe;
-            color: var(--accent-blue);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .nav-link {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            padding: 8px 16px;
-            border-radius: 8px;
-            transition: all 0.2s ease;
-        }
-
-        .nav-link:hover {
-            background: var(--surface-gray);
-            color: var(--primary-green);
-        }
-
-        .btn-primary {
-            background: var(--primary-green);
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 2px 4px rgba(46, 125, 50, 0.2);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            border: 1px solid var(--border-light);
-            color: var(--text-secondary);
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            text-decoration: none;
-        }
-
-        .btn-secondary:hover {
-            background: var(--surface-white);
-            border-color: var(--primary-green);
-            color: var(--primary-green);
-        }
-
-        /* Hero section improvements */
-        .hero {
-            background: var(--surface-white);
-            padding: 80px 0;
-        }
-
-        .hero-badge {
-            background: #f0fdf4;
-            border: 1px solid #bbf7d0;
-            color: var(--primary-green);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            margin-bottom: 24px;
-        }
-
-        .hero-title {
-            font-size: 48px;
-            font-weight: 700;
-            color: var(--text-primary);
-            line-height: 1.1;
-            margin-bottom: 24px;
-        }
-
-        .hero-subtitle {
-            font-size: 20px;
-            color: var(--text-secondary);
-            line-height: 1.6;
-            margin-bottom: 32px;
-        }
-
-        .hero-actions {
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-
-        /* Cards and Grids */
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 24px;
-        }
-
-        .benefit-card {
-            background: var(--surface-white);
-            border-radius: 12px;
-            padding: 24px;
-            border: 1px solid var(--border-light);
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
-            transition: all 0.2s ease;
-        }
-
-        .benefit-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-        }
-
-        .benefit-icon {
-            width: 48px;
-            height: 48px;
-            background: var(--surface-gray);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 16px;
-            color: var(--primary-green);
-            font-size: 20px;
-        }
-
-        .benefit-title {
-            font-size: 18px;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 8px;
-        }
-
-        .benefit-description {
-            font-size: 14px;
-            color: var(--text-secondary);
-            line-height: 1.5;
-        }
-
-        /* Process Steps */
-        .process-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 32px;
-        }
-
-        .process-step {
-            text-align: center;
-        }
-
-        .step-number {
-            width: 64px;
-            height: 64px;
-            background: var(--primary-green);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 16px;
-            color: white;
-            font-size: 24px;
-            font-weight: 700;
-        }
-
-        .step-title {
-            font-size: 18px;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 8px;
-        }
-
-        .step-description {
-            font-size: 14px;
-            color: var(--text-secondary);
-        }
-
-        /* Hot Permit Section */
-        .hot-permit-card {
-            background: linear-gradient(135deg, #f0fdf4, var(--surface-white));
-            border: 1px solid var(--primary-green);
-            border-radius: 16px;
-            padding: 32px;
-            margin-top: 24px;
-        }
-
-        .permit-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 16px;
-        }
-
-        .permit-location {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--text-secondary);
-            font-size: 14px;
-        }
-
-        .permit-status {
-            background: #fffbeb;
-            color: #92400e;
-            padding: 6px 12px;
-            border-radius: 16px;
-            font-size: 12px;
-            font-weight: 600;
-        }
-
-        .permit-title {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 16px;
-        }
-
-        .permit-details {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 16px;
-            margin-bottom: 16px;
-        }
-
-        .permit-detail {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 14px;
-            color: var(--text-secondary);
-        }
-
-        /* Email Signup */
-        .signup-section {
-            background: var(--surface-white);
-            padding: 64px 0;
-            text-align: center;
-        }
-
-        .signup-form {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-            align-items: center;
-            margin-top: 32px;
-            flex-wrap: wrap;
-        }
-
-        .form-input {
-            padding: 16px 20px;
-            border: 1px solid var(--border-light);
-            border-radius: 8px;
-            font-size: 16px;
-            background: var(--surface-white);
-            transition: all 0.2s ease;
-            min-width: 300px;
-        }
-
-        .form-input:focus {
-            outline: none;
-            border-color: var(--primary-green);
-            box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1);
-        }
-
-        /* Footer */
-        .footer {
-            background: var(--surface-white);
-            border-top: 1px solid var(--border-light);
-            padding: 48px 0;
-        }
-
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 24px;
-        }
-
-        .footer-logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .footer-logo-icon {
-            width: 32px;
-            height: 32px;
-            background: var(--primary-green);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 16px;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 32px;
-        }
-
-        .footer-link {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.2s ease;
-        }
-
-        .footer-link:hover {
-            color: var(--primary-green);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .container {
-                padding: 0 20px;
-            }
-
-            .hero-title {
-                font-size: 36px;
-            }
-
-            .hero-actions {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .benefits-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .signup-form {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .form-input {
-                min-width: auto;
-            }
-
-            .footer-content {
-                flex-direction: column;
-                text-align: center;
-            }
-        }
-
-        /* Success/Error Messages */
-        .message {
-            padding: 16px 20px;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 500;
-            margin-top: 16px;
-            display: none;
-        }
-
-        .message.success {
-            background: #f0fdf4;
-            border: 1px solid #bbf7d0;
-            color: var(--success-green);
-            display: block;
-        }
-
-        .message.error {
-            background: #fef2f2;
-            border: 1px solid #fecaca;
-            color: var(--error-red);
-            display: block;
-        }
-    </style>
+  <!-- Meta -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PermitCrushr — Be first to the jobs that need dumpsters</title>
+  <meta name="description" content="Daily permit intelligence for dumpster companies. We scan filings and surface projects that will order roll-offs next — so you show up early and win before the scramble." />
+  <link rel="canonical" href="https://permits.vaughnai.com" />
+  <meta name="theme-color" content="#2e7d32" />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="PermitCrushr — Be first to the jobs that need dumpsters" />
+  <meta property="og:description" content="Daily permit intelligence for dumpster companies. See who’s building before competitors do." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://permits.vaughnai.com" />
+  <meta property="og:image" content="OG_IMAGE_URL" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ---------- Base ---------- */
+    * { margin:0; padding:0; box-sizing:border-box; }
+    :root{
+      --primary-green:#2e7d32; --secondary-green:#43a047; --accent-orange:#ff9800; --accent-blue:#1976d2;
+      --surface-white:#fff; --surface-gray:#f8fafc; --border-light:#e2e8f0;
+      --text-primary:#1e293b; --text-secondary:#64748b; --text-muted:#94a3b8;
+      --success-green:#4caf50; --warning-orange:#ff9800; --error-red:#f44336;
+    }
+    html,body{height:100%;}
+    body{font-family:'Inter',system-ui,-apple-system,BlinkMacSystemFont,sans-serif;background:var(--surface-gray);color:var(--text-primary);line-height:1.55;}
+    .container{max-width:1200px;margin:0 auto;padding:0 32px;}
+    .section{padding:64px 0;}
+    .section.compact{padding:48px 0;}
+    [id]{scroll-margin-top:84px;} /* prevent sticky header overlap */
+
+    h1,h2,h3,h4{font-family:'Inter',system-ui,-apple-system,BlinkMacSystemFont,sans-serif;letter-spacing:-0.01em;}
+
+/* A11y */
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+    .focus-ring:focus-visible{outline:3px solid rgba(46,125,50,.35); outline-offset:2px; border-radius:10px;}
+
+    /* Animations */
+    .animate-fade-up{opacity:0;transform:translateY(20px);transition:opacity .5s ease, transform .5s ease;}
+    .animate-fade-up.revealed{opacity:1;transform:translateY(0);}
+
+    /* ---------- Header ---------- */
+    .header{position:sticky;top:0;z-index:50;background:var(--surface-white);border-bottom:1px solid var(--border-light);padding:16px 32px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 1px 3px rgba(0,0,0,.05);}    
+    .logo-row{display:flex;align-items:center;gap:12px;}
+    .logo{display:block;width:120px;height:32px;object-fit:contain;}
+    .nav{display:flex;align-items:center;gap:16px;}
+    .nav a{color:var(--text-secondary);text-decoration:none;font-size:14px;font-weight:500;padding:8px 12px;border-radius:8px;transition:.2s;}
+    .nav a:hover{background:var(--surface-gray);color:var(--primary-green);}    
+    .btn-primary,.btn-secondary{display:inline-flex;align-items:center;gap:8px;padding:12px 18px;border-radius:10px;font-size:14px;font-weight:600;text-decoration:none;cursor:pointer;transition:.2s;}
+    .btn-primary{background: var(--primary-green);color:#fff;border:none;}
+    .btn-primary:hover{transform:translateY(-1px);box-shadow:0 6px 16px rgba(46,125,50,.28);}    
+    .btn-secondary{background:transparent;border:1px solid var(--border-light);color:var(--text-secondary);}    
+    .btn-secondary:hover{background:var(--surface-white);border-color:var(--primary-green);color:var(--primary-green);}    
+
+    /* ---------- Hero ---------- */
+    .hero{background:var(--surface-white);padding:80px 0;}
+    .hero-badge{background:#f0fdf4;border:1px solid #bbf7d0;color:var(--primary-green);padding:8px 16px;border-radius:20px;font-size:14px;font-weight:600;display:inline-flex;align-items:center;margin-bottom:20px;}
+    .hero-title{font-size:48px;font-weight:700;line-height:1.1;margin-bottom:20px;color:var(--text-primary);}    
+    .hero-sub{font-size:20px;color:var(--text-secondary);line-height:1.6;margin-bottom:24px;}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;}
+    .hero-minilist{margin-top:12px;color:var(--text-secondary);font-size:14px;line-height:1.6;}
+
+    /* ---------- Benefits ---------- */
+    .benefits-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px;}
+    .benefit-card{background:var(--surface-white);border-radius:12px;padding:24px;border:1px solid var(--border-light);box-shadow:0 1px 3px rgba(0,0,0,.05);transition:.2s;}
+    .benefit-card:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(0,0,0,.1);}    
+    .benefit-icon{width:48px;height:48px;background:var(--surface-gray);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;color:var(--primary-green);font-size:20px;}
+    .benefit-title{font-size:18px;font-weight:600;margin-bottom:8px;}
+    .benefit-desc{font-size:14px;color:var(--text-secondary);}    
+
+    /* ---------- Process ---------- */
+    .process-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:28px;}
+    .process-step{text-align:center;}
+    .step-num{width:64px;height:64px;background:var(--primary-green);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;color:#fff;font-size:22px;font-weight:700;}
+    .step-title{font-size:18px;font-weight:600;margin-bottom:6px;}
+    .step-desc{font-size:14px;color:var(--text-secondary);}    
+
+    /* ---------- Hot Permit ---------- */
+    .hot-wrap{background:linear-gradient(135deg,#f0fdf4,var(--surface-white));border:1px solid var(--primary-green);border-radius:16px;padding:28px;margin-top:16px;}
+    .permit-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;gap:12px;flex-wrap:wrap;}
+    .permit-loc{display:flex;align-items:center;gap:8px;color:var(--text-secondary);font-size:14px;}
+    .permit-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:8px;}
+    .permit-pill{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--text-secondary);}    
+
+    /* ---------- Signup ---------- */
+    .signup{text-align:center;background:var(--surface-white);}    
+    .signup-form{display:flex;gap:12px;justify-content:center;align-items:center;margin-top:18px;flex-wrap:wrap;}
+    .form-input{padding:14px 16px;border:1px solid var(--border-light);border-radius:10px;font-size:16px;background:var(--surface-white);min-width:300px;transition:.2s;}
+
+    /* Intake form helpers */
+    .intake-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-top:16px;}
+    .option-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px;}
+    .option-row label{font-size:14px;color:var(--text-secondary);margin-right:12px;}
+
+
+    /* ---------- Footer ---------- */
+    .footer{background:var(--surface-white);border-top:1px solid var(--border-light);padding:40px 0;}
+    .footer-row{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;}
+    .footer-logo{display:flex;align-items:center;gap:10px;}
+    .footer-link{color:var(--text-secondary);text-decoration:none;font-size:14px;transition:.2s;}
+    .footer-link:hover{color:var(--primary-green);}    
+
+    /* ---------- Responsive ---------- */
+    @media (max-width:768px){
+      .container{padding:0 20px;}
+      .hero-title{font-size:36px;}
+      .hero-actions{flex-direction:column;align-items:stretch;}
+      .benefits-grid{grid-template-columns:1fr;}
+      .form-input{min-width:auto;width:100%;}
+    }
+  </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="logo-section">
-            <img src="https://images.squarespace-cdn.com/content/v1/6840c9d1d34a5a1f839c7e81/cfa4ad7a-cb4c-4ca2-9818-3c3c2055c07e/TM-LEAD+CRUSHR+-+B2B+AI+Lead+Generation+%28white-dark%29.jpg?format=750w" 
-                 alt="Lead Crushr" 
-                 style="height: 200px; width: auto;">
-            <span class="badge">PermitCrushr</span>
-        </div>
-        
-        <nav class="nav-links">
-            <a href="#how-it-works" class="nav-link">How it works</a>
-            <a href="#benefits" class="nav-link">Benefits</a>
-            <a href="#hot-permit" class="nav-link">Daily Hot Permit</a>
-            <button onclick="scrollToSignup()" class="btn-primary">
-                Get Daily Feed
-            </button>
-        </nav>
-    </header>
+  <a href="#main" class="sr-only focus-ring">Skip to content</a>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="animate-fade-up" style="max-width: 700px;">
-                <h1 class="hero-title">
-                    Be first to the jobs that need dumpsters.
-                </h1>
-                <p class="hero-subtitle">
-                    We scan public filings daily to surface projects that will order roll-offs next — so you show up early and win before the scramble.
-                </p>
-                <div class="hero-actions">
-                    <button onclick="scrollToHotPermit()" class="btn-primary">
-                        See Today's Hot Permit →
-                    </button>
-                    <button onclick="scrollToBenefits()" class="btn-secondary">
-                        Why This Works
-                    </button>
-                </div>
-            </div>
+  <!-- Header -->
+  <header class="header">
+    <div class="logo-row">
+      <img src="https://images.squarespace-cdn.com/content/v1/6840c9d1d34a5a1f839c7e81/cfa4ad7a-cb4c-4ca2-9818-3c3c2055c07e/TM-LEAD+CRUSHR+-+B2B+AI+Lead+Generation+%28white-dark%29.jpg?format=750w" alt="LeadCrushr" class="logo" width="120" height="32" loading="lazy" />
+    </div>
+    <nav class="nav">
+      <a href="#how-it-works" class="focus-ring">How it works</a>
+      <a href="#benefits" class="focus-ring">Benefits</a>
+      <a href="#hot-permit" class="focus-ring">Daily Hot Permit</a>
+      <a href="#signup" class="btn-primary focus-ring">Get Daily Feed</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- Hero -->
+    <section class="hero" data-animate>
+      <div class="container">
+        <div style="max-width:720px;">
+          <div class="hero-badge">Be first on the job</div>
+          <h1 class="hero-title">Be first to the jobs that need dumpsters.</h1>
+          <p class="hero-sub">
+            We scan public filings daily to surface projects that will order roll-offs next — so you show up early and win before the scramble.
+          </p>
+          <div class="hero-actions">
+            <a href="#hot-permit" class="btn-primary focus-ring">See Today’s Hot Permit →</a>
+            <a href="#benefits" class="btn-secondary focus-ring">Why This Works</a>
+          </div>
+          <ul class="hero-minilist">
+            <li>• Daily list of likely dumpster jobs (sizes & timing clues)</li>
+            <li>• One “Hot Permit” + ready-to-send outreach snippet</li>
+            <li>• Street-loading tips & city quirks noted</li>
+          </ul>
         </div>
+      </div>
     </section>
 
-    <!-- Benefits Section -->
-    <section id="benefits" class="section" style="background: var(--surface-gray);">
-        <div class="container">
-            <div class="benefits-grid">
-                <div class="benefit-card">
-                    <div class="benefit-icon">🚀</div>
-                    <h3 class="benefit-title">Act Fast</h3>
-                    <p class="benefit-description">Filings are the first public proof a job is real. We flag demo‑adjacent permits so you can stage roll‑offs before the scramble.</p>
-                </div>
-
-                <div class="benefit-card">
-                    <div class="benefit-icon">🔍</div>
-                    <h3 class="benefit-title">Stay on Top</h3>
-                    <p class="benefit-description">Daily scans of jurisdictions you care about. Retail refresh? Roof tear‑off? We bubble up the ones that typically need dumpsters.</p>
-                </div>
-
-                <div class="benefit-card">
-                    <div class="benefit-icon">📊</div>
-                    <h3 class="benefit-title">Market Pulse</h3>
-                    <p class="benefit-description">See where money is moving — corridors heating up, owners expanding, and neighborhoods with consistent activity.</p>
-                </div>
-
-                <div class="benefit-card">
-                    <div class="benefit-icon">🎯</div>
-                    <h3 class="benefit-title">Outmaneuver Competitors</h3>
-                    <p class="benefit-description">Being first buys attention. Show up with availability and street‑loading tips before other haulers call.</p>
-                </div>
-
-                <div class="benefit-card">
-                    <div class="benefit-icon">🤝</div>
-                    <h3 class="benefit-title">Build Relationships</h3>
-                    <p class="benefit-description">Consistent, helpful outreach (not salesy) turns early intel into trust — the kind that keeps phones ringing.</p>
-                </div>
-
-                <div class="benefit-card">
-                    <div class="benefit-icon">✅</div>
-                    <h3 class="benefit-title">Less Friction</h3>
-                    <p class="benefit-description">We include notes on alley access, staging, and city quirks so jobs run smoother and margins hold.</p>
-                </div>
-            </div>
+    <!-- Benefits -->
+    <section id="benefits" class="section" style="background:var(--surface-gray);" data-animate>
+      <div class="container">
+        <div class="benefits-grid">
+          <div class="benefit-card">
+            <div class="benefit-icon" aria-hidden="true">🚀</div>
+            <h3 class="benefit-title">Act Fast</h3>
+            <p class="benefit-desc">Filings are the first public proof a job is real. We flag demo-adjacent permits so you can stage roll-offs before the scramble.</p>
+          </div>
+          <div class="benefit-card">
+            <div class="benefit-icon" aria-hidden="true">🔍</div>
+            <h3 class="benefit-title">Stay on Top</h3>
+            <p class="benefit-desc">Daily scans of jurisdictions you care about. Retail refresh? Roof tear-off? We bubble up the ones that typically need dumpsters.</p>
+          </div>
+          <div class="benefit-card">
+            <div class="benefit-icon" aria-hidden="true">📊</div>
+            <h3 class="benefit-title">Market Pulse</h3>
+            <p class="benefit-desc">See where money is moving — corridors heating up, owners expanding, and neighborhoods with consistent activity.</p>
+          </div>
+          <div class="benefit-card">
+            <div class="benefit-icon" aria-hidden="true">🎯</div>
+            <h3 class="benefit-title">Outmaneuver Competitors</h3>
+            <p class="benefit-desc">Being first buys attention. Show up with availability and street-loading tips before other haulers call.</p>
+          </div>
+          <div class="benefit-card">
+            <div class="benefit-icon" aria-hidden="true">🤝</div>
+            <h3 class="benefit-title">Relationships & Brand</h3>
+            <p class="benefit-desc">Helpful, early outreach turns intel into trust — the kind that keeps phones ringing.</p>
+          </div>
+          <div class="benefit-card">
+            <div class="benefit-icon" aria-hidden="true">✅</div>
+            <h3 class="benefit-title">Less Friction</h3>
+            <p class="benefit-desc">We include notes on alley access, staging, and city quirks so jobs run smoother and margins hold.</p>
+          </div>
         </div>
-    </section>
-
-    <!-- ROI Impact Section -->
-    <section class="section" style="background: var(--surface-white);">
-        <div class="container">
-            <div style="text-align: center; margin-bottom: 48px;">
-                <h2 style="font-size: 32px; font-weight: 700; color: var(--text-primary); margin-bottom: 16px;">The Permit Intelligence Advantage</h2>
-                <p style="font-size: 18px; color: var(--text-secondary);">Data from 200+ dumpster companies using permit intelligence</p>
-            </div>
-            
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px;">
-                <!-- Conversion Rate Improvement -->
-                <div style="background: linear-gradient(135deg, #f0fdf4, var(--surface-white)); border: 1px solid var(--primary-green); border-radius: 16px; padding: 32px; text-align: center;">
-                    <div style="width: 80px; height: 80px; margin: 0 auto 20px; background: var(--primary-green); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 32px; font-weight: 700;">3.2x</div>
-                    <h3 style="font-size: 20px; font-weight: 700; color: var(--text-primary); margin-bottom: 8px;">Higher Conversion Rate</h3>
-                    <p style="color: var(--text-secondary); margin-bottom: 16px;">Companies using permit intelligence convert 68% more leads vs. cold outreach (21% vs 6.5%)</p>
-                    <div style="background: var(--surface-white); padding: 12px; border-radius: 8px; font-size: 14px; color: var(--text-secondary);">
-                        <strong>Traditional:</strong> 6.5% conversion<br>
-                        <strong>Permit Intel:</strong> 21% conversion
-                    </div>
-                </div>
-
-                <!-- Time to Close Reduction -->
-                <div style="background: linear-gradient(135deg, #fffbeb, var(--surface-white)); border: 1px solid var(--warning-orange); border-radius: 16px; padding: 32px; text-align: center;">
-                    <div style="width: 80px; height: 80px; margin: 0 auto 20px; background: var(--warning-orange); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 28px; font-weight: 700;">-47%</div>
-                    <h3 style="font-size: 20px; font-weight: 700; color: var(--text-primary); margin-bottom: 8px;">Faster Sales Cycle</h3>
-                    <p style="color: var(--text-secondary); margin-bottom: 16px;">Average time from first contact to contract signature drops from 18 days to 9.5 days</p>
-                    <div style="background: var(--surface-white); padding: 12px; border-radius: 8px; font-size: 14px; color: var(--text-secondary);">
-                        <strong>Traditional:</strong> 18 days average<br>
-                        <strong>Permit Intel:</strong> 9.5 days average
-                    </div>
-                </div>
-
-                <!-- Revenue Per Lead Increase -->
-                <div style="background: linear-gradient(135deg, #f0f9ff, var(--surface-white)); border: 1px solid var(--accent-blue); border-radius: 16px; padding: 32px; text-align: center;">
-                    <div style="width: 80px; height: 80px; margin: 0 auto 20px; background: var(--accent-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 24px; font-weight: 700;">+184%</div>
-                    <h3 style="font-size: 20px; font-weight: 700; color: var(--text-primary); margin-bottom: 8px;">Revenue Per Lead</h3>
-                    <p style="color: var(--text-secondary); margin-bottom: 16px;">Permit-based leads generate $1,840 average revenue vs $650 from traditional marketing</p>
-                    <div style="background: var(--surface-white); padding: 12px; border-radius: 8px; font-size: 14px; color: var(--text-secondary);">
-                        <strong>Traditional:</strong> $650 avg revenue<br>
-                        <strong>Permit Intel:</strong> $1,840 avg revenue
-                    </div>
-                </div>
-            </div>
-
-            <!-- Bottom Stats Bar -->
-            <div style="margin-top: 48px; background: var(--surface-gray); border-radius: 12px; padding: 24px;">
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; text-align: center;">
-                    <div>
-                        <div style="font-size: 32px; font-weight: 700; color: var(--primary-green); margin-bottom: 4px;">89%</div>
-                        <div style="font-size: 14px; color: var(--text-secondary);">of permit leads need dumpsters within 30 days</div>
-                    </div>
-                    <div>
-                        <div style="font-size: 32px; font-weight: 700; color: var(--primary-green); margin-bottom: 4px;">4.7x</div>
-                        <div style="font-size: 14px; color: var(--text-secondary);">higher lifetime value vs. one-time rentals</div>
-                    </div>
-                    <div>
-                        <div style="font-size: 32px; font-weight: 700; color: var(--primary-green); margin-bottom: 4px;">73%</div>
-                        <div style="font-size: 14px; color: var(--text-secondary);">become repeat customers within 12 months</div>
-                    </div>
-                    <div>
-                        <div style="font-size: 32px; font-weight: 700; color: var(--primary-green); margin-bottom: 4px;">$850K</div>
-                        <div style="font-size: 14px; color: var(--text-secondary);">average annual revenue increase</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section id="how-it-works" class="section" style="background: var(--surface-white);">
-        <div class="container">
-            <div style="text-align: center; margin-bottom: 48px;">
-                <h2 style="font-size: 32px; font-weight: 700; color: var(--text-primary); margin-bottom: 16px;">How It Works</h2>
-                <p style="font-size: 18px; color: var(--text-secondary);">A minimal system that maximizes timing.</p>
-            </div>
-            
-            <div class="process-grid">
-                <div class="process-step">
-                    <div class="step-number">1</div>
-                    <h3 class="step-title">Track</h3>
-                    <p class="step-description">We scan filings daily across selected jurisdictions and tag demo‑adjacent jobs.</p>
-                </div>
-
-                <div class="process-step">
-                    <div class="step-number">2</div>
-                    <h3 class="step-title">Filter</h3>
-                    <p class="step-description">We filter by signals that predict dumpster need (interior demo, roof, additions).</p>
-                </div>
-
-                <div class="process-step">
-                    <div class="step-number">3</div>
-                    <h3 class="step-title">Notify</h3>
-                    <p class="step-description">You get a clean list + context — addresses, timing clues, and quick outreach prompts.</p>
-                </div>
-
-                <div class="process-step">
-                    <div class="step-number">4</div>
-                    <h3 class="step-title">Engage</h3>
-                    <p class="step-description">You show up early with availability and helpful guidance. Win work before the noise.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Daily Hot Permit -->
-    <section id="hot-permit" class="section" style="background: var(--surface-gray);">
-        <div class="container">
-            <div style="display: flex; justify-content: space-between; align-items: end; margin-bottom: 24px; flex-wrap: wrap; gap: 16px;">
-                <div>
-                    <h2 style="font-size: 32px; font-weight: 700; color: var(--text-primary); margin-bottom: 8px;">Daily Hot Permit</h2>
-                    <p style="font-size: 16px; color: var(--text-secondary);">One high‑probability job surfaced with context and next steps.</p>
-                </div>
-                <button class="btn-secondary">View Source →</button>
-            </div>
-
-            <div class="hot-permit-card">
-                <div class="permit-header">
-                    <div class="permit-location">
-                        📍 544 Chestnut St, Chattanooga, TN
-                    </div>
-                    <div class="permit-status">Qualified</div>
-                </div>
-                
-                <h3 class="permit-title">Commercial Interior Demo & Buildout</h3>
-                
-                <div class="permit-details">
-                    <div class="permit-detail">
-                        📅 Filed: Aug 12, 2025
-                    </div>
-                    <div class="permit-detail">
-                        ⏰ Start: Immediate
-                    </div>
-                    <div class="permit-detail">
-                        🗂️ Likely: 30-40 yd
-                    </div>
-                    <div class="permit-detail">
-                        ⚡ Interior wall demolition
-                    </div>
-                </div>
-                
-                <p style="color: var(--text-secondary); margin-bottom: 24px;"><strong>Permit B-25-706:</strong> Commercial building demolishing interior walls on first and second floors to create open spaces. Major renovation project with ceiling grid work, drywall repair, and HVAC modifications. Estimated dumpster value: $2,500.</p>
-
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 24px;">
-                    <div style="background: var(--surface-white); border-radius: 12px; padding: 20px;">
-                        <h4 style="font-weight: 600; color: var(--text-primary); margin-bottom: 12px;">Why This Matters</h4>
-                        <ul style="list-style: none; color: var(--text-secondary); font-size: 14px; line-height: 1.6;">
-                            <li style="margin-bottom: 8px;">• Commercial demo project = immediate 30-40 yard dumpster need</li>
-                            <li style="margin-bottom: 8px;">• $275K budget shows serious commitment and ability to pay</li>
-                            <li>• Downtown Chattanooga location = high visibility for your brand</li>
-                        </ul>
-                    </div>
-
-                    <div style="background: var(--surface-white); border-radius: 12px; padding: 20px;">
-                        <h4 style="font-weight: 600; color: var(--text-primary); margin-bottom: 12px;">Suggested Next Steps</h4>
-                        <ul style="list-style: none; color: var(--text-secondary); font-size: 14px; line-height: 1.6; margin-bottom: 16px;">
-                            <li style="margin-bottom: 8px;">• Contact Guy Campbell immediately - project is "Qualified" status</li>
-                            <li style="margin-bottom: 8px;">• Offer 30-40 yd container with flexible pickup schedule</li>
-                            <li>• Provide downtown permit guidance and street loading tips</li>
-                        </ul>
-                        <div style="display: flex; gap: 8px; flex-direction: column;">
-                            <button onclick="copyOutreachSnippet()" class="btn-primary" style="width: 100%;">
-                                Copy Outreach Snippet
-                            </button>
-                            <button class="btn-secondary" style="width: 100%;">
-                                Add to Route
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Email Signup -->
-    <section id="signup" class="signup-section">
-        <div class="container">
-            <h2 style="font-size: 32px; font-weight: 700; color: var(--text-primary); margin-bottom: 16px;">Get the Daily Feed</h2>
-            <p style="font-size: 18px; color: var(--text-secondary); margin-bottom: 32px;">One concise email each morning with the 3–5 jobs most likely to need dumpsters soon. No fluff.</p>
-            
-            <form id="emailForm" class="signup-form">
-                <input 
-                    type="email" 
-                    id="emailInput"
-                    required 
-                    placeholder="you@company.com" 
-                    class="form-input"
-                >
-                <button type="submit" class="btn-primary">
-                    Subscribe
-                </button>
-            </form>
-            
-            <div id="formMessage" class="message"></div>
-            <p style="margin-top: 16px; font-size: 14px; color: var(--text-muted);">We respect your inbox. Unsubscribe anytime.</p>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <div class="footer-logo-icon">🗂️</div>
-                    <span style="font-weight: 700; color: var(--text-primary);">PermitCrushr</span>
-                    <span style="color: var(--text-secondary);">• Dumpster intel, delivered daily</span>
-                </div>
-                <div class="footer-links">
-                    <a href="#" class="footer-link">Privacy</a>
-                    <a href="#" class="footer-link">Terms</a>
-                    <a href="mailto:hello@vaughnai.com" class="footer-link">Contact</a>
-                </div>
-            </div>
-        </div>
-    </footer>blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition font-semibold">
-                        See Today's Hot Permit →
-                    </button>
-                    <button onclick="scrollToBenefits()" class="border border-gray-300 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-50 transition">
-                        Why This Works
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Benefits Section -->
-    <section id="benefits" class="py-16 px-4 sm:px-6 lg:px-8 bg-white">
-        <div class="max-w-7xl mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-gray-50 rounded-xl p-6">
-                    <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-lg font-semibold mb-2">Act Fast</h3>
-                    <p class="text-gray-600 text-sm">Filings are the first public proof a job is real. We flag demo‑adjacent permits so you can stage roll‑offs before the scramble.</p>
-                </div>
-
-                <div class="bg-gray-50 rounded-xl p-6">
-                    <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-5 5v-5zM4 19l5-5 5 5H4z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-lg font-semibold mb-2">Stay on Top</h3>
-                    <p class="text-gray-600 text-sm">Daily scans of jurisdictions you care about. Retail refresh? Roof tear‑off? We bubble up the ones that typically need dumpsters.</p>
-                </div>
-
-                <div class="bg-gray-50 rounded-xl p-6">
-                    <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-lg font-semibold mb-2">Market Pulse</h3>
-                    <p class="text-gray-600 text-sm">See where money is moving — corridors heating up, owners expanding, and neighborhoods with consistent activity.</p>
-                </div>
-
-                <div class="bg-gray-50 rounded-xl p-6">
-                    <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-lg font-semibold mb-2">Outmaneuver Competitors</h3>
-                    <p class="text-gray-600 text-sm">Being first buys attention. Show up with availability and street‑loading tips before other haulers call.</p>
-                </div>
-
-                <div class="bg-gray-50 rounded-xl p-6">
-                    <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-lg font-semibold mb-2">Build Relationships</h3>
-                    <p class="text-gray-600 text-sm">Consistent, helpful outreach (not salesy) turns early intel into trust — the kind that keeps phones ringing.</p>
-                </div>
-
-                <div class="bg-gray-50 rounded-xl p-6">
-                    <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-lg font-semibold mb-2">Less Friction</h3>
-                    <p class="text-gray-600 text-sm">We include notes on alley access, staging, and city quirks so jobs run smoother and margins hold.</p>
-                </div>
-            </div>
-        </div>
+      </div>
     </section>
 
     <!-- How It Works -->
-    <section id="how-it-works" class="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-gray-900 mb-4">How It Works</h2>
-                <p class="text-xl text-gray-600">A minimal system that maximizes timing.</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div class="text-center">
-                    <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <span class="text-white font-bold text-xl">1</span>
-                    </div>
-                    <h3 class="text-lg font-semibold mb-2">Track</h3>
-                    <p class="text-gray-600">We scan filings daily across selected jurisdictions and tag demo‑adjacent jobs.</p>
-                </div>
-
-                <div class="text-center">
-                    <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <span class="text-white font-bold text-xl">2</span>
-                    </div>
-                    <h3 class="text-lg font-semibold mb-2">Filter</h3>
-                    <p class="text-gray-600">We filter by signals that predict dumpster need (interior demo, roof, additions).</p>
-                </div>
-
-                <div class="text-center">
-                    <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <span class="text-white font-bold text-xl">3</span>
-                    </div>
-                    <h3 class="text-lg font-semibold mb-2">Notify</h3>
-                    <p class="text-gray-600">You get a clean list + context — addresses, timing clues, and quick outreach prompts.</p>
-                </div>
-
-                <div class="text-center">
-                    <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <span class="text-white font-bold text-xl">4</span>
-                    </div>
-                    <h3 class="text-lg font-semibold mb-2">Engage</h3>
-                    <p class="text-gray-600">You show up early with availability and helpful guidance. Win work before the noise.</p>
-                </div>
-            </div>
+    <section id="how-it-works" class="section" style="background:var(--surface-white);" data-animate>
+      <div class="container">
+        <div style="text-align:center;margin-bottom:36px;">
+          <h2 style="font-size:32px;font-weight:700;color:var(--text-primary);margin-bottom:12px;">How It Works</h2>
+          <p style="font-size:18px;color:var(--text-secondary);">A minimal system that maximizes timing.</p>
         </div>
+        <div class="process-grid">
+          <div class="process-step">
+            <div class="step-num">1</div>
+            <div class="step-title">Track</div>
+            <div class="step-desc">We scan filings daily across selected jurisdictions and tag demo-adjacent jobs.</div>
+          </div>
+          <div class="process-step">
+            <div class="step-num">2</div>
+            <div class="step-title">Filter</div>
+            <div class="step-desc">We filter by signals that predict dumpster need (interior demo, roof, additions).</div>
+          </div>
+          <div class="process-step">
+            <div class="step-num">3</div>
+            <div class="step-title">Notify</div>
+            <div class="step-desc">You get a clean list + context — addresses, timing clues, and quick outreach prompts.</div>
+          </div>
+          <div class="process-step">
+            <div class="step-num">4</div>
+            <div class="step-title">Engage</div>
+            <div class="step-desc">Show up early with availability and helpful guidance. Win work before the noise.</div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- Daily Hot Permit -->
-    <section id="hot-permit" class="py-16 px-4 sm:px-6 lg:px-8 bg-white">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex justify-between items-end mb-8">
-                <div>
-                    <h2 class="text-3xl font-bold text-gray-900 mb-2">Daily Hot Permit</h2>
-                    <p class="text-gray-600">One high‑probability job surfaced with context and next steps.</p>
-                </div>
-                <button class="text-blue-600 hover:text-blue-700 font-medium">View Source →</button>
-            </div>
-
-            <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8">
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    <div class="lg:col-span-2">
-                        <div class="flex justify-between items-start mb-4">
-                            <div class="flex items-center text-gray-600">
-                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                </svg>
-                                <span class="text-sm">4121 W North Ave, Milwaukee, WI</span>
-                            </div>
-                            <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-xs font-medium">Pre-demo</span>
-                        </div>
-                        
-                        <h3 class="text-2xl font-bold text-gray-900 mb-4">North Ave Retail Refresh</h3>
-                        
-                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
-                            <div class="flex items-center text-sm text-gray-600">
-                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                                </svg>
-                                Filed: Aug 12, 2025
-                            </div>
-                            <div class="flex items-center text-sm text-gray-600">
-                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                Start: Late Aug
-                            </div>
-                            <div class="flex items-center text-sm text-gray-600">
-                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                                </svg>
-                                Likely: 20–30 yd
-                            </div>
-                            <div class="flex items-center text-sm text-gray-600">
-                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                                </svg>
-                                Interior demo + remodel
-                            </div>
-                        </div>
-                        
-                        <p class="text-gray-700">Small retail space preparing for interior gut; typical need is 20–30 yd roll-off for 1–2 pulls over ~7 days.</p>
-                    </div>
-
-                    <div class="space-y-6">
-                        <div class="bg-white rounded-xl p-6">
-                            <h4 class="font-semibold text-gray-900 mb-3">Why This Matters</h4>
-                            <ul class="space-y-2 text-sm text-gray-600">
-                                <li class="flex items-start">
-                                    <span class="w-1.5 h-1.5 bg-blue-600 rounded-full mt-2 mr-2 flex-shrink-0"></span>
-                                    Demo slated within weeks of filing — dumpster is one of the first orders.
-                                </li>
-                                <li class="flex items-start">
-                                    <span class="w-1.5 h-1.5 bg-blue-600 rounded-full mt-2 mr-2 flex-shrink-0"></span>
-                                    Owner is local; faster outreach builds recognition before competitors engage.
-                                </li>
-                                <li class="flex items-start">
-                                    <span class="w-1.5 h-1.5 bg-blue-600 rounded-full mt-2 mr-2 flex-shrink-0"></span>
-                                    Retail frontage on busy corridor — visibility benefits brand.
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="bg-white rounded-xl p-6">
-                            <h4 class="font-semibold text-gray-900 mb-3">Suggested Next Steps</h4>
-                            <ul class="space-y-2 text-sm text-gray-600 mb-4">
-                                <li class="flex items-start">
-                                    <span class="w-1.5 h-1.5 bg-green-600 rounded-full mt-2 mr-2 flex-shrink-0"></span>
-                                    Offer a 20 yd roll-off with 48‑hour standby and same-day swap option.
-                                </li>
-                                <li class="flex items-start">
-                                    <span class="w-1.5 h-1.5 bg-green-600 rounded-full mt-2 mr-2 flex-shrink-0"></span>
-                                    Share a one‑page 'street loading best practices' PDF for city requirements.
-                                </li>
-                                <li class="flex items-start">
-                                    <span class="w-1.5 h-1.5 bg-green-600 rounded-full mt-2 mr-2 flex-shrink-0"></span>
-                                    Ask for tentative demo dates to pre‑book availability.
-                                </li>
-                            </ul>
-                            <button onclick="copyOutreachSnippet()" class="w-full bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition mb-2">
-                                Copy Outreach Snippet
-                            </button>
-                            <button class="w-full border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition">
-                                Add to Route
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- Daily Hot Permit (CSV-only fields) -->
+    <section id="hot-permit" class="section" style="background:var(--surface-gray);" data-animate>
+      <div class="container">
+        <div style="display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap;margin-bottom:16px;">
+          <div>
+            <h2 style="font-size:32px;font-weight:700;color:var(--text-primary);margin-bottom:6px;">Daily Hot Permit</h2>
+            <p style="font-size:16px;color:var(--text-secondary);">A single high‑probability job. Minimal details, straight from the filing.</p>
+          </div>
+          <a href="#" target="_blank" rel="noopener" class="btn-secondary focus-ring" aria-disabled="true">View Source →</a>
         </div>
+
+        <div class="hot-wrap">
+          <div class="permit-top">
+            <div class="permit-loc">📍 544 Chestnut St, Chattanooga, TN</div>
+          </div>
+
+          <div class="permit-grid">
+            <div class="permit-pill">📅 Filed: Aug 12, 2025</div>
+            <div class="permit-pill">🔖 Permit: B-25-706</div>
+            <div class="permit-pill">💲 Declared value: $275,000</div>
+          </div>
+
+          <p style="color:var(--text-secondary);margin:8px 0 12px;">
+            Interior walls to open space; paint; install power poles; relocate HVAC grilles.
+          </p>
+
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <button class="btn-primary focus-ring" id="copySnippetBtn">Copy Outreach Snippet</button>
+            <a class="btn-secondary focus-ring" href="https://www.google.com/maps/dir/?api=1&destination=544+Chestnut+St,+Chattanooga,+TN" target="_blank" rel="noopener">Add to Route</a>
+          </div>
+        </div>
+
+        <p style="margin-top:14px;color:var(--text-muted);font-size:13px;">
+          Details shown are exactly as listed in the public filing.
+        </p>
+      </div>
     </section>
 
-    <!-- Email Signup -->
-    <section id="signup" class="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
-        <div class="max-w-3xl mx-auto text-center">
-            <h2 class="text-3xl font-bold text-gray-900 mb-4">Get the Daily Feed</h2>
-            <p class="text-xl text-gray-600 mb-8">One concise email each morning with the 3–5 jobs most likely to need dumpsters soon. No fluff.</p>
-            
-            <form id="emailForm" class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <input 
-                    type="email" 
-                    id="emailInput"
-                    required 
-                    placeholder="you@company.com" 
-                    class="w-full sm:w-96 px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                >
-                <button 
-                    type="submit"
-                    class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition font-semibold whitespace-nowrap"
-                >
-                    Subscribe
-                </button>
-            </form>
-            
-            <div id="formMessage" class="mt-4 hidden"></div>
-            <p class="mt-4 text-sm text-gray-500">We respect your inbox. Unsubscribe anytime.</p>
-        </div>
-    </section>
+    <!-- Signup -->
+    <section id="signup" class="section signup" data-animate>
+      <div class="container">
+        <h2 style="font-size:32px;font-weight:700;color:var(--text-primary);margin-bottom:10px;">Get the Daily Feed</h2>
+        <p style="font-size:18px;color:var(--text-secondary);">Tell us your market and workflow so we can tailor the daily feed (and start a quick conversation).</p>
 
-    <!-- Footer -->
-    <footer class="bg-white border-t border-gray-200 py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col sm:flex-row justify-between items-center">
-                <div class="flex items-center space-x-3 mb-4 sm:mb-0">
-                    <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </div>
-                    <span class="font-bold text-gray-900">PermitCrushr</span>
-                    <span class="text-gray-600">• Dumpster intel, delivered daily</span>
-                </div>
-                <div class="flex space-x-6 text-sm text-gray-600">
-                    <a href="#" class="hover:text-gray-900">Privacy</a>
-                    <a href="#" class="hover:text-gray-900">Terms</a>
-                    <a href="mailto:hello@vaughnai.com" class="hover:text-gray-900">Contact</a>
-                </div>
+        <!-- Netlify Forms intake (no backend) -->
+        <form name="market-intake" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" class="signup-form" id="intakeForm">
+          <input type="hidden" name="form-name" value="market-intake" />
+          <p class="sr-only"><label>Don’t fill this out if you're human: <input name="bot-field" /></label></p>
+
+          <div class="intake-grid" style="margin-top:6px;">
+            <input class="form-input focus-ring" name="name" placeholder="Your name *" required />
+            <input class="form-input focus-ring" name="company" placeholder="Company *" required />
+            <input class="form-input focus-ring" type="email" name="email" placeholder="Email *" required />
+            <input class="form-input focus-ring" type="tel" name="phone" placeholder="Phone *" required />
+          </div>
+
+          <div class="intake-grid">
+            <input class="form-input focus-ring" name="market" placeholder="Primary market (city/metro) *" required />
+            <input class="form-input focus-ring" name="jurisdictions" placeholder="Jurisdictions to monitor (cities/counties)" />
+          </div>
+
+          <div class="intake-grid">
+            <div>
+              <label style="font-weight:600;color:var(--text-primary);font-size:14px;">How do you currently find projects?</label>
+              <div class="option-row">
+                <label><input type="checkbox" name="process_channels" value="referrals" /> Referrals / inbound calls</label>
+                <label><input type="checkbox" name="process_channels" value="contractors" /> Existing contractors/subs</label>
+                <label><input type="checkbox" name="process_channels" value="permits" /> Permit tracking</label>
+                <label><input type="checkbox" name="process_channels" value="bid-boards" /> Bid boards</label>
+                <label><input type="checkbox" name="process_channels" value="other" /> Other</label>
+              </div>
             </div>
+            <div>
+              <label style="font-weight:600;color:var(--text-primary);font-size:14px;">Do you currently track permits?</label>
+              <div class="option-row">
+                <label><input type="radio" name="permits_now" value="yes" required /> Yes</label>
+                <label><input type="radio" name="permits_now" value="no" /> No</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="intake-grid">
+            <select name="heard" class="form-input focus-ring" aria-label="How did you hear about us?">
+              <option value="" selected disabled>How did you hear about us?</option>
+              <option value="referral">Referral</option>
+              <option value="search">Google/Search</option>
+              <option value="social">Social</option>
+              <option value="email">Email</option>
+              <option value="other">Other</option>
+            </select>
+            <input class="form-input focus-ring" name="sizes" placeholder="Container sizes you provide (e.g., 10, 20, 30, 40 yd)" />
+          </div>
+
+          <textarea class="form-input focus-ring" name="notes" placeholder="Anything else about your process or markets?" style="min-height:100px"></textarea>
+
+          <div style="margin-top:12px;display:flex;justify-content:center;">
+            <button type="submit" class="btn-primary focus-ring">Start the conversation</button>
+          </div>
+        </form>
+
+        <div id="formMessage" style="margin-top:12px;display:none;"></div>
+
+        <!-- Hidden form registration for Netlify (ensure detection at build time) -->
+        <form name="market-intake" netlify netlify-honeypot="bot-field" hidden>
+          <input type="text" name="name" />
+          <input type="text" name="company" />
+          <input type="email" name="email" />
+          <input type="tel" name="phone" />
+          <input type="text" name="market" />
+        </form>
+
+        <p style="margin-top:10px;font-size:14px;color:var(--text-muted);">We respect your inbox. Unsubscribe anytime.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-row">
+        <div class="footer-logo">
+          <div style="width:32px;height:32px;background:var(--primary-green);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;">🗂️</div>
+          <span style="font-weight:700;color:var(--text-primary);">PermitCrushr</span>
+          <span style="color:var(--text-secondary);">• Dumpster intel, delivered daily</span>
         </div>
-    </footer>
+        <div style="display:flex;gap:24px;">
+          <a href="/privacy.html" class="footer-link focus-ring">Privacy</a>
+          <a href="/terms.html" class="footer-link focus-ring">Terms</a>
+          <a href="mailto:hello@vaughnai.com" class="footer-link focus-ring">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
 
-    <script>
-        // Form submission
-        document.getElementById('emailForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const email = document.getElementById('emailInput').value;
-            const messageDiv = document.getElementById('formMessage');
-            
-            try {
-                // Create form data
-                const formData = new FormData();
-                formData.append('to', 'hello@vaughnai.com');
-                formData.append('subject', 'New PermitCrushr Signup');
-                formData.append('body', `New signup from: ${email}\nSource: permits.vaughnai.com\nTimestamp: ${new Date().toISOString()}`);
-                
-                // Simple mailto fallback (most reliable)
-                window.location.href = `mailto:hello@vaughnai.com?subject=New PermitCrushr Signup&body=New signup from: ${email}%0D%0ASource: permits.vaughnai.com%0D%0ATimestamp: ${new Date().toISOString()}`;
-                
-                // Show success message
-                messageDiv.className = 'mt-4 p-4 bg-green-100 text-green-800 rounded-lg';
-                messageDiv.textContent = 'Thank you! We will get in contact with you shortly.';
-                messageDiv.classList.remove('hidden');
-                
-                // Clear form
-                document.getElementById('emailInput').value = '';
-                
-            } catch (error) {
-                console.error('Form submission error:', error);
-                messageDiv.className = 'mt-4 p-4 bg-red-100 text-red-800 rounded-lg';
-                messageDiv.textContent = 'Something went wrong. Please email us directly at hello@vaughnai.com';
-                messageDiv.classList.remove('hidden');
-            }
-        });
-
-        // Copy outreach snippet
-        function copyOutreachSnippet() {
-            const snippet = `Subject: Dumpster availability for your Chestnut St demo project
-
-Hi Guy,
-
-Noticed your commercial demo permit for 544 Chestnut St (B-25-706). Interior wall removal projects like yours typically need a 30-40 yard container.
-
-We specialize in downtown Chattanooga projects and can help with:
-• Immediate container placement
-• Flexible pickup schedule for your timeline  
-• Downtown permit compliance guidance
-
-When are you planning to start the demo work? Happy to reserve availability.
-
-Best regards,
-[Your Name]
-[Your Company]`;
-
-            if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(snippet).then(() => {
-                    alert('Outreach snippet copied to clipboard!');
-                }).catch(() => {
-                    fallbackCopy(snippet);
-                });
-            } else {
-                fallbackCopy(snippet);
-            }
+  <script>
+    /* IntersectionObserver to reveal sections */
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          observer.unobserve(entry.target);
         }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('[data-animate]').forEach(el => {
+      el.classList.add('animate-fade-up'); observer.observe(el);
+    });
 
-        function fallbackCopy(text) {
-            const textArea = document.createElement('textarea');
-            textArea.value = text;
-            document.body.appendChild(textArea);
-            textArea.select();
-            document.execCommand('copy');
-            document.body.removeChild(textArea);
-            alert('Outreach snippet copied to clipboard!');
+    /* Copy outreach snippet (tight 4-liner) */
+    document.getElementById('copySnippetBtn')?.addEventListener('click', () => {
+      const snippet = `Subject: Dumpster availability — Chestnut St demo
+
+Hi there — saw your interior demo at 544 Chestnut St (B-25-706). We can help with container placement and scheduling. Do you have demo dates yet? Happy to pencil in availability.
+
+— [Your Name]`;
+      if (navigator.clipboard?.writeText) {
+        navigator.clipboard.writeText(snippet).then(() => alert('Outreach snippet copied.'));
+      } else {
+        const t = document.createElement('textarea'); t.value = snippet; document.body.appendChild(t); t.select();
+        document.execCommand('copy'); document.body.removeChild(t); alert('Outreach snippet copied.');
+      }
+    });
+
+    /* Netlify Forms UX: show inline confirmation without blocking default submission */
+    const form = document.getElementById('intakeForm');
+    const msg = document.getElementById('formMessage');
+    form?.addEventListener('submit', function () {
+      setTimeout(() => {
+        if (msg) {
+          msg.style.display = 'block';
+          msg.textContent = 'Thanks — we’ll review your market and follow up.';
+          msg.style.background = '#f0fdf4';
+          msg.style.border = '1px solid #bbf7d0';
+          msg.style.color = '#166534';
+          msg.style.padding = '12px 16px';
+          msg.style.borderRadius = '10px';
         }
-
-        // Smooth scrolling functions
-        function scrollToSignup() {
-            document.getElementById('signup').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function scrollToHotPermit() {
-            document.getElementById('hot-permit').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function scrollToBenefits() {
-            document.getElementById('benefits').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        // Add scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-fade-up');
-                }
-            });
-        }, observerOptions);
-
-    </script>
+      }, 150);
+    });
+  </script>
 </body>
 </html>
